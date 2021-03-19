@@ -6,8 +6,31 @@
 //
 
 #import "ViewController.h"
+#import "DBVoiceTransferUtil.h"
+#import "DBLoginVC.h"
+#import "XCHudHelper.h"
+#import "UIView+Toast.h"
 
-@interface ViewController ()
+
+static NSString *clientID = @"61dfd38e-175e-44b0-971a-36f70ee71d66";
+
+static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZTNl";
+
+
+@interface ViewController ()<UIPickerViewDelegate,UIPickerViewDataSource,DBTransferProtocol>
+@property (weak, nonatomic) IBOutlet UILabel *desLabel;
+@property (weak, nonatomic) IBOutlet UILabel *msgLabel;
+@property (weak, nonatomic) IBOutlet UITextField *modelTextField;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *fileButton;
+
+@property(nonatomic,strong)NSArray * pickerArray;
+
+@property (nonatomic, strong)DBVoiceTransferUtil * voiceTransferUtil;
+
+/// 保存用户录制的
+@property(nonatomic,assign)FILE *  micPCMFile;
+
 
 @end
 
@@ -15,8 +38,174 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.pickerArray = @[@"Vc_jiaojiao",@"Vc_tiantian",@"far-field",@"Vc_baklong",@"Vc_ledi",@"Vc_weimian"];
+
+    [self setupSubView];
+    
+    
+
+    
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSString *clientId = [[NSUserDefaults standardUserDefaults] objectForKey:clientIdKey];
+    NSString *clientSecret = [[NSUserDefaults standardUserDefaults] objectForKey:clientSecretKey];
+    if (!clientSecret || !clientId) {
+        [self showLogInVC];
+        return ;
+    }
+    
+    [[XCHudHelper sharedInstance] showHudOnView:self.view caption:@"" image:nil acitivity:YES autoHideTime:0];
+    [[DBVoiceTransferUtil shareInstance] setupClientId:clientId clientSecret:clientSecret block:^(NSString * _Nullable token, NSError * _Nullable error) {
+            if (error) {
+                [[XCHudHelper sharedInstance] hideHud];
+                NSLog(@"获取token失败:%@",error);
+                NSString *msg = [NSString stringWithFormat:@"获取token失败:%@",error.description];
+                [self.view makeToast:msg duration:2 position:CSToastPositionCenter];
+                return;
+            }
+            [[XCHudHelper sharedInstance] hideHud];
+            [[NSUserDefaults standardUserDefaults]setObject:clientId forKey:clientIdKey];
+            [[NSUserDefaults standardUserDefaults]setObject:clientSecret forKey:clientSecretKey];
+            [[NSUserDefaults standardUserDefaults]setObject:token forKey:@"token"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self dismissViewControllerAnimated:YES completion:nil];
+
+        }];
+    
+}
+
+- (void)showLogInVC {
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        DBLoginVC *loginVC  =   [story instantiateViewControllerWithIdentifier:@"DBLoginVC"];
+    loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:loginVC animated:YES completion:nil];
+}
+
+- (void)setupSubView {
+    _desLabel.text = @"使用说明：\n 1.选择音色；\n 2.点击开始录音，录音结束后点击停止录音； \n 3.声音转换完全直接进行播放；\n 4.本地文件转换会直接读取本地音频文件进行声音转换。";
+    [self creatPickerView];
+}
+
+-(void)creatPickerView  {
+    CGFloat width = self.view.frame.size.width;
+    
+    UIPickerView  * pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 0, width, 150)];
+    pickerView.delegate = self;
+    pickerView.dataSource = self;
+    pickerView.backgroundColor = [UIColor whiteColor];
+    UIToolbar  *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, width, 44)];
+    
+    //设置toolBar的样式
+    //toolbar.barStyle = UIBarStyleDefault;
+    
+    /***必要步骤****/
+    self.modelTextField.inputView = pickerView;
+    self.modelTextField.inputAccessoryView = toolBar;
+    
+    //这个是toolBar上的确定按钮
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTouched:)];
+    doneButton.title = @"确定";
+    //取消按钮
+    UIBarButtonItem *cancleButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancleTouched:)];
+    cancleButton.title = @"取消";
+    //将取消按钮，一个空白的填充item和一个确定按钮放入toolBar
+    [toolBar setItems:[NSArray arrayWithObjects:cancleButton,[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],doneButton, nil]];
+}
+
+- (IBAction)recordVoiceButton:(id)sender {
+    UIButton *button = sender;
+    button.selected = !button.isSelected;
+    [self startRecord:button.isSelected];
+    
+}
+- (void)startRecord:(BOOL)isStart {
+    if (isStart) {
+//        self.micPCMFile = fopen([self.voiceTransferUtil getAudioDataPathWithFileName:@"micPCMFile"].UTF8String, "wb");
+
+        [self.voiceTransferUtil startTransferNeedPlay:YES];
+    }else {
+        [self.voiceTransferUtil endRecognizeAndCloseSocket];
+    }
+    
+
+}
+
+
+- (IBAction)localFileVoiceTransfer:(id)sender {
+}
+
+
+#pragma mark -toolBarBarItem的方法
+-(void)doneTouched:(UIBarButtonItem *)sender{
+//将textField的第一响应取消
+    [self.modelTextField resignFirstResponder];
+}
+-(void)cancleTouched:(UIBarButtonItem *)sender{
+ 
+//将textField的第一响应取消
+    [self.modelTextField resignFirstResponder];
+}
+
+#pragma mark - pickerViewDelegate&dataSource
+//返回picker有几列
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+//返回每列有几行
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+//数据源
+    return [self.pickerArray count];
+}
+//返回每行显示的内容
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    NSString *item = [self.pickerArray objectAtIndex:row];
+
+    return item;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        pickerLabel.adjustsFontSizeToFitWidth = YES;
+        [pickerLabel setTextAlignment:NSTextAlignmentCenter];
+        [pickerLabel setBackgroundColor:[UIColor systemTealColor]];
+        [pickerLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    }
+    // Fill the label text here
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
+}
+//picker选取某一行执行的方法
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    self.modelTextField.text =  self.pickerArray[row];
+//    self.asrAudioClient.domain = self.pickerArray[row];
+
+}
+
+- (void)onError:(NSInteger)code message:(NSString *)message {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"token"];
+    [userDefaults removeObjectForKey:clientSecretKey];
+    [userDefaults removeObjectForKey:clientIdKey];
+    [self showLogInVC];
+}
+
+
+
+// MARK: -- Setter&Getter Methods
+
+- (DBVoiceTransferUtil *)voiceTransferUtil {
+    if (!_voiceTransferUtil) {
+        _voiceTransferUtil = [DBVoiceTransferUtil shareInstance];
+        _voiceTransferUtil.log = YES;
+        _voiceTransferUtil.voiceName = self.pickerArray.firstObject;
+        _voiceTransferUtil.delegate = self;
+        
+    }
+    return _voiceTransferUtil;
+}
 
 @end
