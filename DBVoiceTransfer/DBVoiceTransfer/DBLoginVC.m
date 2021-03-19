@@ -53,26 +53,7 @@
             [[NSUserDefaults standardUserDefaults]setObject:token forKey:@"token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
-
         }];
-
-    /*
-    [[DBVoiceTransferUtil shareInstance] setupWithClientId:clientId clientSecret:clientSecret queryId:idfa SuccessHandler:^(NSDictionary * _Nonnull dict) {
-        [[XCHudHelper sharedInstance] hideHud];
-        [[NSUserDefaults standardUserDefaults]setObject:clientId forKey:clientIdKey];
-        [[NSUserDefaults standardUserDefaults]setObject:clientSecret forKey:clientSecretKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        NSLog(@"获取token成功");
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } failureHander:^(NSError * _Nonnull error) {
-        [[XCHudHelper sharedInstance] hideHud];
-        NSLog(@"获取token失败:%@",error);
-        NSString *msg = [NSString stringWithFormat:@"获取token失败:%@",error.description];
-        [self.view makeToast:msg duration:2 position:CSToastPositionCenter];
-        
-    }];
-     */
      
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

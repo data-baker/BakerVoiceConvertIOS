@@ -81,6 +81,15 @@
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Maj-DB-X4b">
+                                <rect key="frame" x="167" y="531" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="5GP-8T-E2D"/>
+                                    <constraint firstAttribute="width" constant="80" id="Ai3-tn-ILM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="JHl-yZ-UcV"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="r8g-kN-l4p"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Khz-hw-EA0"/>
                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
@@ -98,10 +107,12 @@
                             <constraint firstItem="Khz-hw-EA0" firstAttribute="trailing" secondItem="n8i-Qi-0lz" secondAttribute="trailing" constant="20" id="fVg-hu-HpS"/>
                             <constraint firstItem="6xY-xZ-TWW" firstAttribute="leading" secondItem="Khz-hw-EA0" secondAttribute="leading" constant="20" id="hx8-J8-YYm"/>
                             <constraint firstItem="Khz-hw-EA0" firstAttribute="trailing" secondItem="6MJ-FM-Qfp" secondAttribute="trailing" constant="20" id="j9U-ub-3f7"/>
+                            <constraint firstItem="Khz-hw-EA0" firstAttribute="trailing" secondItem="Maj-DB-X4b" secondAttribute="trailing" constant="167" id="jDY-GM-kZ9"/>
                             <constraint firstItem="Khz-hw-EA0" firstAttribute="trailing" secondItem="6xY-xZ-TWW" secondAttribute="trailing" constant="20" id="jdo-gl-jsw"/>
                             <constraint firstItem="xWN-aN-YMK" firstAttribute="top" secondItem="Khz-hw-EA0" secondAttribute="top" constant="10" id="nHu-0S-hFf"/>
                             <constraint firstItem="6MJ-FM-Qfp" firstAttribute="top" secondItem="n8i-Qi-0lz" secondAttribute="bottom" constant="30" id="qO1-t4-XVW"/>
                             <constraint firstItem="xWN-aN-YMK" firstAttribute="leading" secondItem="Khz-hw-EA0" secondAttribute="leading" constant="20" id="qWt-FH-kB9"/>
+                            <constraint firstItem="n8i-Qi-0lz" firstAttribute="top" secondItem="Maj-DB-X4b" secondAttribute="bottom" constant="63" id="ydI-3x-lQo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="一句话识别" id="Zbs-Kr-UJe">
@@ -117,6 +128,7 @@
                         <outlet property="modelTextField" destination="DfW-3P-OpL" id="gYv-GO-3cq"/>
                         <outlet property="msgLabel" destination="6xY-xZ-TWW" id="iJU-yN-gW1"/>
                         <outlet property="startButton" destination="n8i-Qi-0lz" id="p6m-eK-2I2"/>
+                        <outlet property="voiceImageView" destination="Maj-DB-X4b" id="lDo-gg-mbW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u48-bD-Bul" sceneMemberID="firstResponder"/>
@@ -221,6 +233,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1.png" width="333" height="333"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

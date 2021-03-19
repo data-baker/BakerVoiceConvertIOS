@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		355DEFA42604B8CD0066FFDC /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEF9C2604B8CC0066FFDC /* 8.png */; };
+		355DEFA52604B8CD0066FFDC /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEF9D2604B8CC0066FFDC /* 4.png */; };
+		355DEFA62604B8CD0066FFDC /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEF9E2604B8CC0066FFDC /* 5.png */; };
+		355DEFA72604B8CD0066FFDC /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEF9F2604B8CC0066FFDC /* 7.png */; };
+		355DEFA82604B8CD0066FFDC /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA02604B8CC0066FFDC /* 6.png */; };
+		355DEFA92604B8CD0066FFDC /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA12604B8CC0066FFDC /* 2.png */; };
+		355DEFAA2604B8CD0066FFDC /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA22604B8CC0066FFDC /* 3.png */; };
+		355DEFAB2604B8CD0066FFDC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA32604B8CC0066FFDC /* 1.png */; };
 		35C44C9C2602F18400F95017 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44C9B2602F18400F95017 /* AppDelegate.m */; };
 		35C44C9F2602F18400F95017 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44C9E2602F18400F95017 /* SceneDelegate.m */; };
 		35C44CA22602F18400F95017 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44CA12602F18400F95017 /* ViewController.m */; };
@@ -70,6 +78,14 @@
 		0943EE7D62CA9772AAE492A4 /* libPods-DBVoiceTransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DBVoiceTransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13E33D0FA250E1933AA0CC47 /* libPods-DBVoiceTransferUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DBVoiceTransferUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B828B8E3F14FE6ABC27F647 /* Pods-DBVoiceTransferTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBVoiceTransferTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DBVoiceTransferTests/Pods-DBVoiceTransferTests.release.xcconfig"; sourceTree = "<group>"; };
+		355DEF9C2604B8CC0066FFDC /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		355DEF9D2604B8CC0066FFDC /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		355DEF9E2604B8CC0066FFDC /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		355DEF9F2604B8CC0066FFDC /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		355DEFA02604B8CC0066FFDC /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		355DEFA12604B8CC0066FFDC /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		355DEFA22604B8CC0066FFDC /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		355DEFA32604B8CC0066FFDC /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		35C44C972602F18400F95017 /* DBVoiceTransfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DBVoiceTransfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C44C9A2602F18400F95017 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		35C44C9B2602F18400F95017 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -145,6 +161,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		355DEF9B2604B8CC0066FFDC /* DBVoiceResource */ = {
+			isa = PBXGroup;
+			children = (
+				355DEF9C2604B8CC0066FFDC /* 8.png */,
+				355DEF9D2604B8CC0066FFDC /* 4.png */,
+				355DEF9E2604B8CC0066FFDC /* 5.png */,
+				355DEF9F2604B8CC0066FFDC /* 7.png */,
+				355DEFA02604B8CC0066FFDC /* 6.png */,
+				355DEFA12604B8CC0066FFDC /* 2.png */,
+				355DEFA22604B8CC0066FFDC /* 3.png */,
+				355DEFA32604B8CC0066FFDC /* 1.png */,
+			);
+			path = DBVoiceResource;
+			sourceTree = "<group>";
+		};
 		35C44C8E2602F18400F95017 = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +211,7 @@
 				35C44CA12602F18400F95017 /* ViewController.m */,
 				35C44CF026032D5300F95017 /* DBLoginVC.h */,
 				35C44CEF26032D5300F95017 /* DBLoginVC.m */,
+				355DEF9B2604B8CC0066FFDC /* DBVoiceResource */,
 				35C44D4126034FBD00F95017 /* DBVoiceTransfer */,
 				35C44CFC26032E4E00F95017 /* XCToast */,
 				35C44CA32602F18400F95017 /* Main.storyboard */,
@@ -402,8 +434,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				355DEFAB2604B8CD0066FFDC /* 1.png in Resources */,
+				355DEFA42604B8CD0066FFDC /* 8.png in Resources */,
 				35C44CAA2602F18700F95017 /* LaunchScreen.storyboard in Resources */,
 				35C44CA72602F18700F95017 /* Assets.xcassets in Resources */,
+				355DEFA72604B8CD0066FFDC /* 7.png in Resources */,
+				355DEFA62604B8CD0066FFDC /* 5.png in Resources */,
+				355DEFAA2604B8CD0066FFDC /* 3.png in Resources */,
+				355DEFA52604B8CD0066FFDC /* 4.png in Resources */,
+				355DEFA92604B8CD0066FFDC /* 2.png in Resources */,
+				355DEFA82604B8CD0066FFDC /* 6.png in Resources */,
 				35C44CA52602F18400F95017 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,6 +23,7 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 @property (weak, nonatomic) IBOutlet UITextField *modelTextField;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *fileButton;
+@property (weak, nonatomic) IBOutlet UIImageView *voiceImageView;
 
 @property(nonatomic,strong)NSArray * pickerArray;
 
@@ -41,9 +42,6 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
     self.pickerArray = @[@"Vc_jiaojiao",@"Vc_tiantian",@"far-field",@"Vc_baklong",@"Vc_ledi",@"Vc_weimian"];
 
     [self setupSubView];
-    
-    
-
     
 }
 
@@ -84,8 +82,9 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 }
 
 - (void)setupSubView {
-    _desLabel.text = @"使用说明：\n 1.选择音色；\n 2.点击开始录音，录音结束后点击停止录音； \n 3.声音转换完全直接进行播放；\n 4.本地文件转换会直接读取本地音频文件进行声音转换。";
+    _desLabel.text = @"使用说明：\n 1.选择音色；\n 2.点击开始录音转换，录音结束后点击停止录音转换； \n 3.声音转换完全直接进行播放；\n 4.本地文件转换会直接读取本地音频文件进行声音转换。";
     [self creatPickerView];
+    self.modelTextField.text = self.pickerArray.firstObject;
 }
 
 -(void)creatPickerView  {
@@ -122,14 +121,12 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 }
 - (void)startRecord:(BOOL)isStart {
     if (isStart) {
-//        self.micPCMFile = fopen([self.voiceTransferUtil getAudioDataPathWithFileName:@"micPCMFile"].UTF8String, "wb");
-
         [self.voiceTransferUtil startTransferNeedPlay:YES];
+        self.voiceImageView.hidden = NO;
     }else {
+        self.voiceImageView.hidden = YES;
         [self.voiceTransferUtil endRecognizeAndCloseSocket];
     }
-    
-
 }
 
 
@@ -181,8 +178,7 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 //picker选取某一行执行的方法
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     self.modelTextField.text =  self.pickerArray[row];
-//    self.asrAudioClient.domain = self.pickerArray[row];
-
+    self.voiceTransferUtil.voiceName = self.pickerArray[row];
 }
 
 - (void)onError:(NSInteger)code message:(NSString *)message {
@@ -191,8 +187,36 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
     [userDefaults removeObjectForKey:clientSecretKey];
     [userDefaults removeObjectForKey:clientIdKey];
     [self showLogInVC];
+    self.voiceImageView.hidden = YES;
 }
 
+- (void)dbValues:(NSInteger)db {
+    NSUInteger volumeDB = db;
+    static NSInteger index = 0;
+    index++;
+    if (index == 1) {
+        index = 0;
+    }else {
+        return;
+    }
+    if (volumeDB < 30) {
+        self.voiceImageView.image = [UIImage imageNamed:@"1"];
+    }else if (volumeDB < 40) {
+        self.voiceImageView.image = [UIImage imageNamed:@"2"];
+    }else if (volumeDB < 50) {
+        self.voiceImageView.image = [UIImage imageNamed:@"3"];
+    }else if (volumeDB < 55) {
+        self.voiceImageView.image = [UIImage imageNamed:@"4"];
+    }else if (volumeDB < 60) {
+        self.voiceImageView.image = [UIImage imageNamed:@"5"];
+    }else if (volumeDB < 70) {
+        self.voiceImageView.image = [UIImage imageNamed:@"6"];
+    }else if (volumeDB < 80) {
+        self.voiceImageView.image = [UIImage imageNamed:@"7"];
+    }else{
+        self.voiceImageView.image = [UIImage imageNamed:@"8"];
+    }
+}
 
 
 // MARK: -- Setter&Getter Methods

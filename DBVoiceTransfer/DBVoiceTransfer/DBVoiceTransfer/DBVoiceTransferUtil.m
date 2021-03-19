@@ -254,23 +254,20 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
             }
         }
      
-
         if (model.lastpkg) {
             [self closedAudioResource];
             [self playTransferData];
         }
-       
     }
-    
     // 解析音频数据
     return dict;
 }
 
 /// 获取音频保存的路径,转换后的音频数据
 -(NSString*)getSavePath:(NSString *)fileName {
-
+    
     NSString *filePath = [NSString stringWithFormat:@"audio_%@.pcm",fileName];
-
+    
     NSString* fileUrlString = [self.audioDir stringByAppendingPathComponent:filePath];
     return fileUrlString;
 }
@@ -289,7 +286,6 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     return ret;
     
 }
-
 
 - (NSString *)dictionaryToJson:(NSDictionary *)dic {
     NSError *parseError = nil;
