@@ -11,10 +11,8 @@
 #import "XCHudHelper.h"
 #import "UIView+Toast.h"
 
+static NSString *DBAudioMicroData = @"audioMicroData";
 
-static NSString *clientID = @"61dfd38e-175e-44b0-971a-36f70ee71d66";
-
-static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZTNl";
 
 
 @interface ViewController ()<UIPickerViewDelegate,UIPickerViewDataSource,DBTransferProtocol>
@@ -29,9 +27,8 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 
 @property (nonatomic, strong)DBVoiceTransferUtil * voiceTransferUtil;
 
-/// 保存用户录制的
-@property(nonatomic,assign)FILE *  micPCMFile;
-
+/// 麦克风采集的数据
+@property(nonatomic,strong)NSMutableData * micAudioData;
 
 @end
 
@@ -40,9 +37,8 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pickerArray = @[@"Vc_jiaojiao",@"Vc_tiantian",@"far-field",@"Vc_baklong",@"Vc_ledi",@"Vc_weimian"];
-
+    self.micAudioData = [NSMutableData data];
     [self setupSubView];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -121,6 +117,7 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 }
 - (void)startRecord:(BOOL)isStart {
     if (isStart) {
+        [self.micAudioData resetBytesInRange:NSMakeRange(0, self.micAudioData.length)];
         [self.voiceTransferUtil startTransferNeedPlay:YES];
         self.voiceImageView.hidden = NO;
     }else {
@@ -131,6 +128,16 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 
 
 - (IBAction)localFileVoiceTransfer:(id)sender {
+    UIButton *button = sender;
+    button.selected = !button.isSelected;
+    if (button.isSelected) {
+        [[XCHudHelper sharedInstance] showHudOnView:self.view caption:@"文件转换中..." image:nil acitivity:YES autoHideTime:0];
+
+        [self.voiceTransferUtil startTransferWithFilePath:[self.voiceTransferUtil getSavePath:DBAudioMicroData] needPaley:YES];
+    }else {
+        [self.voiceTransferUtil endFileTransferAndCloseSocket];
+    }
+    
 }
 
 
@@ -182,6 +189,11 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
 }
 
 - (void)onError:(NSInteger)code message:(NSString *)message {
+    if (code == DBErrorStateFileReadFailed) {
+        [[XCHudHelper sharedInstance] hideHud];
+        [self.view makeToast:message duration:2 position:CSToastPositionCenter];
+        return;
+    }
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults removeObjectForKey:@"token"];
     [userDefaults removeObjectForKey:clientSecretKey];
@@ -189,6 +201,16 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
     [self showLogInVC];
     self.voiceImageView.hidden = YES;
 }
+
+- (void)microphoneAudioData:(NSData *)data isLast:(BOOL)isLast {
+    [self.micAudioData appendData:data];
+    if (isLast) {
+        [self.micAudioData writeToFile:[self.voiceTransferUtil getSavePath:DBAudioMicroData] atomically:YES];
+        NSLog(@"self.micAudioData length:%@",@(self.micAudioData.length));
+    }
+}
+
+
 
 - (void)dbValues:(NSInteger)db {
     NSUInteger volumeDB = db;
@@ -218,6 +240,23 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
     }
 }
 
+- (void)transferCallBack:(NSData *)data isLast:(BOOL)isLast {
+    NSLog(@"dataLength:%@ isLast:%@,",@(data.length),@(isLast));
+    
+    if (isLast) {
+        self.fileButton.selected = NO;
+        [[XCHudHelper sharedInstance] hideHud];
+    }
+    
+}
+
+- (void)readlyToPlay {
+    NSLog(@"%s readlyToPlay",__func__);
+}
+- (void)playFinished {
+    NSLog(@"%s playFinished",__func__);
+}
+
 
 // MARK: -- Setter&Getter Methods
 
@@ -226,8 +265,7 @@ static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZT
         _voiceTransferUtil = [DBVoiceTransferUtil shareInstance];
         _voiceTransferUtil.log = YES;
         _voiceTransferUtil.voiceName = self.pickerArray.firstObject;
-        _voiceTransferUtil.delegate = self;
-        
+        _voiceTransferUtil.delegate = self;        
     }
     return _voiceTransferUtil;
 }

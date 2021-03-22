@@ -12,8 +12,6 @@
 #import <DBCommon/DBUncaughtExceptionHandler.h>
 #import <DBCommon/DBLogManager.h>
 
-#import "DBTransferModel.h"
-
 #define kAudioFolder @"AudioFolder" // 音频文件夹
 
 static NSString *DBErrorDomain = @"com.BiaoBeri.DBVoiceTransferUtil";
@@ -28,14 +26,13 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 };
 
 
-@interface DBVoiceTransferUtil ()<DBPCMPlayDelegate,DBAudioMicrophoneDelegate,DBZSocketCallBcakDelegate>
+@interface DBVoiceTransferUtil ()<DBSynthesisPlayerDelegate,DBAudioMicrophoneDelegate,DBZSocketCallBcakDelegate>
 
 @property(nonatomic,copy)NSString  * clientId;
 
 @property(nonatomic,copy)NSString  * clientSecret;
 
 @property(nonatomic,strong)NSString * accessToken;
-
 
 @property (strong, nonatomic)DBAudioMicrophone *microphone;
 
@@ -49,7 +46,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 
 @property (nonatomic, strong) NSString * socketURL;
 
-@property (nonatomic, assign) BOOL flag;
+@property (nonatomic, assign) BOOL firstFlag;
 
 /// Yes:需要播放; NO： 不需要播放
 @property(nonatomic,assign)BOOL  needPlay;
@@ -59,7 +56,16 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 
 @property (copy ,nonatomic) NSString *audioDir;                 // 录音文件夹路径
 
-@property(nonatomic,strong)NSMutableData * mutableData;
+
+/// isFileTransfer: Yes: 文件转换， NO: 非文件转换
+@property(nonatomic,assign)BOOL isFileTransfer;
+
+@property(nonatomic,copy)NSString * filePath;
+@property (nonatomic) NSUInteger hasReadFileSize;
+@property (nonatomic) int sizeToRead;
+@property (nonatomic, retain) NSFileHandle *fileHandle;
+@property (nonatomic, retain) NSThread *fileReadThread;
+
 
 @end
 
@@ -72,7 +78,6 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     dispatch_once(&onceToken, ^{
         transferUtil = [[DBVoiceTransferUtil alloc]init];
         DBInstallUncaughtExceptionHandler();
-     
     });
     return transferUtil;
 }
@@ -88,19 +93,23 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 //----  MARK: 用户按钮的状态控制
 
 - (void)startTransferNeedPlay:(BOOL)needPlay {
-    
-    [self removeLocalFile];
-   
-    
+    [self startTransferNeedPlay:needPlay isFileTransfer:NO];
+}
+
+- (void)fileTransferNeedPlay:(BOOL)needPlay {
+    [self startTransferNeedPlay:needPlay isFileTransfer:YES];
+}
+
+- (void)startTransferNeedPlay:(BOOL)needPlay isFileTransfer:(BOOL)isFileTransfer {
+    [self removeLocalDataWithPath:DBFileName];
     self.needPlay = needPlay;
-    [self.mutableData resetBytesInRange:NSMakeRange(0, [self.mutableData length])];
+    self.firstFlag = YES;
+    self.isFileTransfer = isFileTransfer;
     [self startSocketAndRecognize];
 }
 
 - (void)startSocketAndRecognize {
     [self closedAudioResource];
-    self.asrState = DBAsrStateStart;
-    [self openMicrophone];
     self.socketManager.timeOut = 6;
     if (self.socketURL.length == 0) {
         self.socketURL = @"wss://openapi.data-baker.com/ws/voice_conversion";
@@ -112,6 +121,33 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 
 - (void)endRecognizeAndCloseSocket {
     self.asrState = DBAsrStateWillEnd;
+}
+
+-(void)endFileTransferAndCloseSocket {
+    [self resetRecognizer];
+    [self.socketManager DBZWebSocketClose];
+}
+
+// MARK: ------ 开启文件识别 ---------
+
+- (void)startTransferWithFilePath:(NSString *)filePath needPaley:(BOOL)needPlay {
+    self.filePath = filePath;
+    self.isFileTransfer = YES;
+    self.sizeToRead = 16000 * 0.1 * 16 / 8;
+    self.hasReadFileSize = 0;
+    [self fileTransferNeedPlay:needPlay];
+}
+
+- (void)resetRecognizer
+{
+    self.hasReadFileSize = 0;
+    if (self.fileReadThread) {
+        [self.fileReadThread cancel];
+        while (self.fileReadThread && ![self.fileReadThread isFinished])
+        {
+            [NSThread sleepForTimeInterval:0.1];
+        }
+    }
 }
 
 - (void)openMicrophone {
@@ -141,8 +177,29 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
         NSLog(@"audio Session error :%@",error);
     }
     NSData *data = [NSData dataWithContentsOfFile:[self getSavePath:DBFileName]];
+    
+    [self.player stopPlay];
+    self.player = nil;
     [self.player appendData:data totalDatalength:data.length endFlag:YES];
     [self.player startPlay];
+    
+}
+
+// MARK: Player的播放回调
+
+/// 准备好了，可以开始播放了，回调
+- (void)readlyToPlay {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(readlyToPlay)]) {
+        [self.delegate readlyToPlay];
+    }
+}
+
+/// 播放完成回调
+- (void)playFinished {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(playFinished)]) {
+        [self.delegate playFinished];
+    }
     
 }
 
@@ -151,7 +208,47 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 // MARK: Websocket Delegate Methods
 - (void)webSocketDidOpenNote {
     [self logMessage:@"socket链接成功"];
-    [self.microphone startRecord];
+    self.asrState = DBAsrStateStart;
+    if (self.isFileTransfer) {
+        NSThread *fileReadThread = [[NSThread alloc] initWithTarget:self
+                                                           selector:@selector(fileReadThreadFunc)
+                                                             object:nil];
+        self.fileReadThread = fileReadThread;
+        [self.fileReadThread start];
+        
+    }else {
+        [self openMicrophone];
+        [self.microphone startRecord];
+    }
+    
+}
+
+- (void)fileReadThreadFunc
+{
+    while ([self.fileReadThread isCancelled] == NO) {
+        //间隔一定时长获取语音，模拟人的正常语速
+        [NSThread sleepForTimeInterval:0.01];
+        self.fileHandle = [NSFileHandle fileHandleForReadingAtPath:self.filePath];
+        if (!self.fileHandle) {
+            [self logMessage:self.filePath];
+            [self logMessage:@"打开本地文件失败"];
+            [self.fileReadThread cancel];
+            [self delegateErrorCode:DBErrorStateFileReadFailed message:@"本地文件打开失败"];
+            return;
+        }
+        [self.fileHandle seekToFileOffset:self.hasReadFileSize];
+        NSData* data = [self.fileHandle readDataOfLength:self.sizeToRead];
+        [self.fileHandle closeFile];
+        self.hasReadFileSize += [data length];
+        if ([data length] == 0) {
+            self.asrState = DBAsrStateDidEnd;
+            [self webSocketPostData:data];
+            break;
+        }else {
+            [self webSocketPostData:data];
+
+        }
+    }
 }
 
 
@@ -159,11 +256,30 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     [self transferResponseData:object];
 }
 
+- (void)webSocketDidCloseNote:(id)object {
+    [self logMessage:@"服务器连接关闭"];
+}
+
+
+- (void)webSocketdidConnectFailed:(id)object {
+    [self logMessage:@"服务器连接关闭"];
+}
+
+
 // MARK: DBAudioMicrophoneDelegate methods
 - (void)audioMicrophone:(DBAudioMicrophone *)microphone hasAudioPCMByte:(Byte *)pcmByte audioByteSize:(UInt32)byteSize {
-    
+    NSData*data = [[NSData alloc]initWithBytes:pcmByte length:byteSize];
+
     if (self.asrState == DBAsrStateDidEnd) {
         return;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(microphoneAudioData:isLast:)]) {
+        if (self.asrState == DBAsrStateWillEnd) {
+            [self.delegate microphoneAudioData:data isLast:YES];
+        }else {
+            [self.delegate microphoneAudioData:data isLast:NO];
+        }
     }
     
     if (self.asrState == DBAsrStateWillEnd) { // 如果准备结束了，不再继续回调数据
@@ -173,7 +289,6 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
         return;
     }
     
-    NSData*data = [[NSData alloc]initWithBytes:pcmByte length:byteSize];
     [self webSocketPostData:data];
 }
 
@@ -187,7 +302,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     }else {
         parameter[@"lastpkg"] = @(NO);
     }
-    
+
     parameter[@"enable_vad"] = @(self.enableVad);
     
     parameter[@"voice_name"] = self.voiceName;
@@ -226,8 +341,12 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     
 }
 
-- (NSDictionary *)transferResponseData:(NSData *)data {
-    NSDictionary *dict;
+// MARK: --- 开始转换数据 ----
+- (void)transferResponseData:(NSData *)data {
+    if (data.length < 4 ) {
+        [self delegateErrorCode:DBErrorStateParsing message:@"网络数据解析失败"];
+        return;
+    }
     const uint8_t *resData = [data bytes];
     NSInteger dataLength = (resData[0]<<24) + (resData[1]<<16) + (resData[2]<<8) + resData[3];
     NSData *jsonData = [data subdataWithRange:NSMakeRange(4, dataLength)];
@@ -236,53 +355,53 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     NSLog(@"jsonDict:%@",jsonDict);
     DBTransferModel *model = [[DBTransferModel alloc]init];
     [model setValuesForKeysWithDictionary:jsonDict];
-    if (model.errcode == 10002) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(onError:message:)]) {
-            [self.delegate onError:model.errcode message:model.errmsg];
-        }
-    }else {
-        NSInteger location = 4 + dataLength;
-        if (data.length - location > 0) {
-            NSData *subData = [data subdataWithRange:NSMakeRange(location, data.length - location)];
+    if (model.errcode != 0) {
+        [self delegateErrorCode:model.errcode message:model.errmsg];
+        return ;
+    }
+    
+    
+    NSInteger location = 4 + dataLength;
+    if (data.length - location > 0) {
+        NSData *subData = [data subdataWithRange:NSMakeRange(location, data.length - location)];
+        if (self.firstFlag) {
+            [subData writeToFile:[self getSavePath:DBFileName] atomically:YES];
+            self.firstFlag = NO;
+        }else {
             NSString *path = [self getSavePath:DBFileName];
             self.transferPCMFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
             [self.transferPCMFileHandle seekToEndOfFile];
             [self.transferPCMFileHandle writeData:subData];
             NSLog(@"path:%@,handle:%@",path,self.transferPCMFileHandle);
-            if (self.delegate && [self.delegate respondsToSelector:@selector(transferCallBack:isLast:)]) {
-                [self.delegate transferCallBack:subData isLast:model.lastpkg];
-            }
         }
-     
-        if (model.lastpkg) {
-            [self closedAudioResource];
-            [self playTransferData];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(transferCallBack:isLast:)]) {
+            [self.delegate transferCallBack:subData isLast:model.lastpkg];
         }
     }
-    // 解析音频数据
-    return dict;
+    
+    if (model.lastpkg) {
+        [self closedAudioResource];
+        [self playTransferData];
+    }
 }
+    // 解析音频数据
+
 
 /// 获取音频保存的路径,转换后的音频数据
 -(NSString*)getSavePath:(NSString *)fileName {
     
     NSString *filePath = [NSString stringWithFormat:@"audio_%@.pcm",fileName];
-    
     NSString* fileUrlString = [self.audioDir stringByAppendingPathComponent:filePath];
     return fileUrlString;
 }
-- (void)removeLocalFile {
-    [self removeLocalDataWithPath:DBFileName];
-}
 
 - (BOOL)removeLocalDataWithPath:(NSString *)fileName {
-    NSString *filePath = [NSString stringWithFormat:@"audio_%@.pcm",fileName];
-    BOOL ret = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    NSString *path = [self getSavePath:DBFileName];
+    BOOL ret = [[NSFileManager defaultManager] fileExistsAtPath:path];
     if (ret) {
-        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     }
-    self.mutableData = [NSMutableData data];
-    [self.mutableData writeToFile:[self getSavePath:DBFileName] atomically:YES];
     return ret;
     
 }
@@ -321,6 +440,14 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     }
 }
     
+- (void)delegateErrorCode:(NSInteger)code message:(NSString *)message {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(onError:message:)]) {
+            [self.delegate onError:code message:message];
+        }
+    });
+ 
+}
 
 - (DBZSocketRocketUtility *)socketManager {
     if (!_socketManager) {
@@ -344,6 +471,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     if (!_player) {
         _player = [[DBSynthesisPlayer alloc] init];
         _player.audioType = DBTTSAudioTypePCM16K;
+        _player.delegate = (id)self;
     }
     return _player;
 }

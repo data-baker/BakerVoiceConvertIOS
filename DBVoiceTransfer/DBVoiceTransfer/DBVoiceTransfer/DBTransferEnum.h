@@ -1,0 +1,18 @@
+//
+//  DBTransferEnum.h
+//  DBVoiceTransfer
+//
+//  Created by linxi on 2021/3/22.
+//
+
+#ifndef DBTransferEnum_h
+#define DBTransferEnum_h
+
+
+typedef NS_ENUM(NSUInteger,DBErrorState) {
+    
+    DBErrorStateFileReadFailed = 19110001, // 文件读取失败
+    DBErrorStateParsing = 19110002, // 网络数据解析失败
+
+};
+#endif /* DBTransferEnum_h */

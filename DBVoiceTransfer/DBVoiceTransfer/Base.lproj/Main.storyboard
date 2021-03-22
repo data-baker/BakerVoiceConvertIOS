@@ -26,7 +26,7 @@
                                 <state key="normal" title="本地文件声音转换">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <state key="selected" title="松开结束"/>
+                                <state key="selected" title="结束文件转换"/>
                                 <connections>
                                     <action selector="localFileVoiceTransfer:" destination="0Df-RG-Cod" eventType="touchUpInside" id="0DJ-SX-uU4"/>
                                 </connections>

@@ -78,6 +78,7 @@
 		0943EE7D62CA9772AAE492A4 /* libPods-DBVoiceTransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DBVoiceTransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13E33D0FA250E1933AA0CC47 /* libPods-DBVoiceTransferUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DBVoiceTransferUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B828B8E3F14FE6ABC27F647 /* Pods-DBVoiceTransferTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBVoiceTransferTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DBVoiceTransferTests/Pods-DBVoiceTransferTests.release.xcconfig"; sourceTree = "<group>"; };
+		35596439260889FE00614462 /* DBTransferEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBTransferEnum.h; sourceTree = "<group>"; };
 		355DEF9C2604B8CC0066FFDC /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		355DEF9D2604B8CC0066FFDC /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		355DEF9E2604B8CC0066FFDC /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
@@ -268,6 +269,7 @@
 				35FA54512604828600276269 /* DBTransferModel.h */,
 				35FA54522604828600276269 /* DBTransferModel.m */,
 				35C44D2B26033A0300F95017 /* DBTransferProtocol.h */,
+				35596439260889FE00614462 /* DBTransferEnum.h */,
 			);
 			path = DBVoiceTransfer;
 			sourceTree = "<group>";
