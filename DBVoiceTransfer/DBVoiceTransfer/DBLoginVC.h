@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 static  NSString *clientIdKey = @"clientIdKey";
 static  NSString *clientSecretKey = @"clientSecretKey";
 
+static NSString *clientID = @"61dfd38e-175e-44b0-971a-36f70ee71d66";
+static NSString *clientSecret = @"NTBlOTIwOGQtM2UzZS00Y2ZlLWI0ZWUtMTU5NjIwN2JiZTNl";
 
 
 

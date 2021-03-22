@@ -24,7 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 1.打印日志 0:不打印日志(打印日志会在沙盒中保存一份text,方便我们查看,上线前要置为NO);
 @property (nonatomic, assign) BOOL log;
 
+// 
 @property(nonatomic,assign)BOOL enableVad;
+
 @property(nonatomic,copy)NSString * voiceName;
 
 

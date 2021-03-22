@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+
 #import "DBVoiceTransferUtil.h"
 #import "DBLoginVC.h"
 #import "XCHudHelper.h"
@@ -36,7 +37,7 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.pickerArray = @[@"Vc_jiaojiao",@"Vc_tiantian",@"far-field",@"Vc_baklong",@"Vc_ledi",@"Vc_weimian"];
+    self.pickerArray = @[@"Vc_jiaojiao",@"Vc_tiantian",@"Vc_baklong",@"Vc_ledi",@"Vc_weimian"];
     self.micAudioData = [NSMutableData data];
     [self setupSubView];
 }
@@ -78,7 +79,7 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 }
 
 - (void)setupSubView {
-    _desLabel.text = @"使用说明：\n 1.选择音色；\n 2.点击开始录音转换，录音结束后点击停止录音转换； \n 3.声音转换完全直接进行播放；\n 4.本地文件转换会直接读取本地音频文件进行声音转换。";
+    _desLabel.text = @"使用说明：\n 1.选择音色；\n 2.点击开始录音转换，录音结束后点击停止录音转换； \n 3.声音转换完全直接进行播放；\n 4.本地文件转换会直接读取本地录音音频文件进行声音转换。";
     [self creatPickerView];
     self.modelTextField.text = self.pickerArray.firstObject;
 }

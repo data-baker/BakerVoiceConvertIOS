@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09DC7D4E568AA30D644BA57F897A2123 /* Pods-DBVoiceTransferUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C77928A8A482FF38830716C522CBAD31 /* Pods-DBVoiceTransferUITests-dummy.m */; };
-		2824F9293490DD32200A933262101545 /* Pods-DBVoiceTransfer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC4FFC1361789C258A978A3A82E3494 /* Pods-DBVoiceTransfer-dummy.m */; };
+		09DC7D4E568AA30D644BA57F897A2123 /* Pods-DBVoiceTransferUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 66771142F1C59866BD7DAB7ABAA4EDE2 /* Pods-DBVoiceTransferUITests-dummy.m */; };
+		20A7BD5CC3388260B2920EB70346A382 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3E61157EC648BC2849582A475E230 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-dummy.m */; };
+		2824F9293490DD32200A933262101545 /* Pods-DBVoiceTransfer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EC05805B63010C5B44EE1F2CE4681C /* Pods-DBVoiceTransfer-dummy.m */; };
 		4AE482FC9C79009AF993C7C51DE448E7 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E7D949126B0E71CF695A4403116AFF /* UIView+Toast.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4EA9D8F5380988D9EDC1E9F580C7FCDA /* Toast-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A14F54F5097AD7C57D8C6150F11AF8 /* Toast-dummy.m */; };
 		9B9C8CB2BD083DA24E518D45096838E3 /* UIView+Toast.h in Headers */ = {isa = PBXBuildFile; fileRef = B3ED89F4FED45D301D14DFA1A0471A4B /* UIView+Toast.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9DB3B03364FF55A66039D3FD2BDE33B8 /* Toast.h in Headers */ = {isa = PBXBuildFile; fileRef = 439AB2CC99AE659453990DF0C0C9C6F6 /* Toast.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		AC751B1D1A45DE32F61837B28EE6B8AF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A21D4E69078E803E4AC97DAA88F57A71 /* QuartzCore.framework */; };
-		B0A0BDB269850350D3012160EB4C243B /* Pods-DBVoiceTransferTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD0CC976F95F736F5D8A517876338E /* Pods-DBVoiceTransferTests-dummy.m */; };
+		B0A0BDB269850350D3012160EB4C243B /* Pods-DBVoiceTransferTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1E58742C1D6C99431B2454D203520 /* Pods-DBVoiceTransferTests-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,43 +40,57 @@
 			remoteGlobalIDString = C54E57B8AE0436278F2F322D7123EC35;
 			remoteInfo = Toast;
 		};
+		AE0C1DBB8FC5FCA4BF913D6BA71F0460 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C54E57B8AE0436278F2F322D7123EC35;
+			remoteInfo = Toast;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04AF9892B3E9EC97F0524CFC322BFEA0 /* Pods-DBVoiceTransfer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransfer-frameworks.sh"; sourceTree = "<group>"; };
-		08E1B2AAE7C7AE1D429A8562F006D1E9 /* Pods-DBVoiceTransferTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DBVoiceTransferTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		0921A6BD6146F89BF0DBF37904CF0A72 /* Pods-DBVoiceTransfer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DBVoiceTransfer-acknowledgements.plist"; sourceTree = "<group>"; };
-		0D98C2B7A009649F5FE8C005CFFC7BDE /* libToast.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libToast.a; path = libToast.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0FBD0CC976F95F736F5D8A517876338E /* Pods-DBVoiceTransferTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DBVoiceTransferTests-dummy.m"; sourceTree = "<group>"; };
+		0F75236E964ACEEBB8B256C9D3B66A07 /* Pods-DBVoiceTransfer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransfer-frameworks.sh"; sourceTree = "<group>"; };
+		13A25C7D6028C18AEF2497314E49172F /* libPods-DBVoiceTransfer-DBBVoiceTransfer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-DBVoiceTransfer-DBBVoiceTransfer.a"; path = "libPods-DBVoiceTransfer-DBBVoiceTransfer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1798F2001EFD5A64943F00D209F065D6 /* libPods-DBVoiceTransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-DBVoiceTransferTests.a"; path = "libPods-DBVoiceTransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AB1E58742C1D6C99431B2454D203520 /* Pods-DBVoiceTransferTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DBVoiceTransferTests-dummy.m"; sourceTree = "<group>"; };
+		1B23CE67A21405D5BBA85BE2DEDC90DD /* Pods-DBVoiceTransfer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DBVoiceTransfer-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1ECD9E07EAE1E76C1507E7468F74D37A /* DBCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DBCommon.framework; path = DBCommonLib/Classes/DBCommon.framework; sourceTree = "<group>"; };
+		229A1E65A7BEFA72EEDAF993788AA4C3 /* Pods-DBVoiceTransferTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DBVoiceTransferTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		28AD5EE9F3E6ADA16555890A01A4569A /* Pods-DBVoiceTransferTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransferTests-frameworks.sh"; sourceTree = "<group>"; };
+		3D3248ABA5B2EC10D3BD18B732AFA42A /* Pods-DBVoiceTransfer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DBVoiceTransfer-acknowledgements.plist"; sourceTree = "<group>"; };
+		3D8CA95DE38B24CECB0E25610D658AA4 /* Pods-DBVoiceTransfer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransfer.debug.xcconfig"; sourceTree = "<group>"; };
 		439AB2CC99AE659453990DF0C0C9C6F6 /* Toast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Toast.h; path = "Toast-Framework/Toast.h"; sourceTree = "<group>"; };
-		46D040C47D6B1A9FBEC9B7E007986B8C /* Pods-DBVoiceTransfer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DBVoiceTransfer-acknowledgements.markdown"; sourceTree = "<group>"; };
-		627E66776FEAD045E06289B47809A05D /* Pods-DBVoiceTransferUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DBVoiceTransferUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6C8A67248572564E0A6788DEFC9833D6 /* libPods-DBVoiceTransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-DBVoiceTransferTests.a"; path = "libPods-DBVoiceTransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		451D8422C4BD62E6C27218327B388A8D /* Pods-DBVoiceTransferTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransferTests.debug.xcconfig"; sourceTree = "<group>"; };
+		472424F800C944E3FAE50E72329D0B60 /* Pods-DBVoiceTransferTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransferTests-frameworks.sh"; sourceTree = "<group>"; };
+		584F8131D5ACAD38E45BDE2F4609C899 /* Pods-DBVoiceTransferTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransferTests.release.xcconfig"; sourceTree = "<group>"; };
+		5BF5DE0C56E477E609A3FC71C1ED46D8 /* Pods-DBVoiceTransfer-DBBVoiceTransfer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransfer-DBBVoiceTransfer.debug.xcconfig"; sourceTree = "<group>"; };
+		641421D3EB5E997C5A98F5AAB2FA2F4C /* Pods-DBVoiceTransferUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DBVoiceTransferUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		66771142F1C59866BD7DAB7ABAA4EDE2 /* Pods-DBVoiceTransferUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DBVoiceTransferUITests-dummy.m"; sourceTree = "<group>"; };
+		72C5D41429CA8542742070F8CC189971 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransfer-DBBVoiceTransfer-resources.sh"; sourceTree = "<group>"; };
+		77F3E61157EC648BC2849582A475E230 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DBVoiceTransfer-DBBVoiceTransfer-dummy.m"; sourceTree = "<group>"; };
+		8718CD3CE9C4E7F200492527E1808086 /* Pods-DBVoiceTransfer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransfer.release.xcconfig"; sourceTree = "<group>"; };
 		8A1B261B90D0B70D4BE819D251C954D1 /* Toast-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Toast-prefix.pch"; sourceTree = "<group>"; };
-		8EB33F8FAC5013565C9DE33C7539B807 /* Pods-DBVoiceTransfer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransfer.debug.xcconfig"; sourceTree = "<group>"; };
-		90171B4C81E185AC4A83DBB155D7DBB0 /* Pods-DBVoiceTransferTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransferTests-resources.sh"; sourceTree = "<group>"; };
-		931B992C7AED3B411559DF2CCCF3EDF4 /* Pods-DBVoiceTransferUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DBVoiceTransferUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		9DDAA93942BF583202F1D7461B74FB59 /* libPods-DBVoiceTransferUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-DBVoiceTransferUITests.a"; path = "libPods-DBVoiceTransferUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FFA9E82CFA7F51615E25D186CDFC118 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DBVoiceTransfer-DBBVoiceTransfer-acknowledgements.markdown"; sourceTree = "<group>"; };
+		963379B263A32CEFB931065C7247C791 /* Pods-DBVoiceTransferUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransferUITests.release.xcconfig"; sourceTree = "<group>"; };
+		99200F28755DF88EAF77E9C8FB901D68 /* Pods-DBVoiceTransferTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransferTests-resources.sh"; sourceTree = "<group>"; };
+		9C4C7C6A34AC8D06B8608BF0D0AADF68 /* Pods-DBVoiceTransfer-DBBVoiceTransfer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransfer-DBBVoiceTransfer.release.xcconfig"; sourceTree = "<group>"; };
+		9CB9F6BC525F82A6833001AC391438D9 /* Pods-DBVoiceTransferUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransferUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A1309AC4B6A2B67C9835377A6B041D34 /* Toast.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Toast.xcconfig; sourceTree = "<group>"; };
 		A1A14F54F5097AD7C57D8C6150F11AF8 /* Toast-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Toast-dummy.m"; sourceTree = "<group>"; };
 		A21D4E69078E803E4AC97DAA88F57A71 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		A374CB8D8D89CA0F47F0DEB95E33D6E6 /* Pods-DBVoiceTransferUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransferUITests-frameworks.sh"; sourceTree = "<group>"; };
+		B15625E12E1D3F2E5F1E4D18CDF770BD /* libPods-DBVoiceTransferUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-DBVoiceTransferUITests.a"; path = "libPods-DBVoiceTransferUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3ED89F4FED45D301D14DFA1A0471A4B /* UIView+Toast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Toast.h"; path = "Toast/UIView+Toast.h"; sourceTree = "<group>"; };
 		B6E7D949126B0E71CF695A4403116AFF /* UIView+Toast.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+Toast.m"; path = "Toast/UIView+Toast.m"; sourceTree = "<group>"; };
-		C1862A42DE6952096D535E1908C72304 /* Pods-DBVoiceTransferTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DBVoiceTransferTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C77928A8A482FF38830716C522CBAD31 /* Pods-DBVoiceTransferUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DBVoiceTransferUITests-dummy.m"; sourceTree = "<group>"; };
-		C96B73627EFE1668204C5B80D169932D /* Pods-DBVoiceTransferTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransferTests.release.xcconfig"; sourceTree = "<group>"; };
-		D1464678081F4C4D04F9E0DACF59E67F /* Pods-DBVoiceTransferUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransferUITests-resources.sh"; sourceTree = "<group>"; };
-		D6B1E011AB0BC1CFE03E771D282A5513 /* Pods-DBVoiceTransferUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransferUITests-frameworks.sh"; sourceTree = "<group>"; };
-		D857DAE92CC464C3896AAAABBDBA1603 /* Pods-DBVoiceTransferTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransferTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DFC87E6912F7E846A264D288ADFB216D /* Pods-DBVoiceTransfer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransfer.release.xcconfig"; sourceTree = "<group>"; };
-		E1DF2E384B9B43721888D1E9D0BF1105 /* Pods-DBVoiceTransfer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransfer-resources.sh"; sourceTree = "<group>"; };
-		ECCB8E984BCEC49772D525A3CF07443C /* Pods-DBVoiceTransferUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransferUITests.release.xcconfig"; sourceTree = "<group>"; };
-		EE5438DF307D8292C63F6EF237DD22C3 /* Pods-DBVoiceTransferUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DBVoiceTransferUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F074A695AED7400F70C4F6B953EE032A /* libPods-DBVoiceTransfer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-DBVoiceTransfer.a"; path = "libPods-DBVoiceTransfer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFC4FFC1361789C258A978A3A82E3494 /* Pods-DBVoiceTransfer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DBVoiceTransfer-dummy.m"; sourceTree = "<group>"; };
+		C288E644B87BEBF91A5153EC25317B23 /* libPods-DBVoiceTransfer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-DBVoiceTransfer.a"; path = "libPods-DBVoiceTransfer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5DCC593E9840462341823A314CCC8FC /* Pods-DBVoiceTransfer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransfer-resources.sh"; sourceTree = "<group>"; };
+		CC6D76A07E7F59E574BA7AD5B1BCE21A /* Pods-DBVoiceTransferUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DBVoiceTransferUITests-resources.sh"; sourceTree = "<group>"; };
+		DB25DACAADF3F257C11052503B845759 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DBVoiceTransfer-DBBVoiceTransfer-acknowledgements.plist"; sourceTree = "<group>"; };
+		DEF3AACCA3930B61FB8333397AD8A2E0 /* Pods-DBVoiceTransferTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DBVoiceTransferTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E0DB7FC2CD1F1EEA33CA0E10A11AB7B6 /* libToast.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libToast.a; path = libToast.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F540DCE05C1682F76E3ECC9A4F8CBA42 /* Pods-DBVoiceTransferUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DBVoiceTransferUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F7EC05805B63010C5B44EE1F2CE4681C /* Pods-DBVoiceTransfer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DBVoiceTransfer-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +99,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC751B1D1A45DE32F61837B28EE6B8AF /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		570A46884E974A63D7BBA5430A94E836 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,19 +133,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B6203DFB151EFB65DAE1936152729ED /* Pods-DBVoiceTransfer */ = {
+		0EE79B2C1265F8DB4C10E404398C98DE /* Pods-DBVoiceTransferTests */ = {
 			isa = PBXGroup;
 			children = (
-				46D040C47D6B1A9FBEC9B7E007986B8C /* Pods-DBVoiceTransfer-acknowledgements.markdown */,
-				0921A6BD6146F89BF0DBF37904CF0A72 /* Pods-DBVoiceTransfer-acknowledgements.plist */,
-				FFC4FFC1361789C258A978A3A82E3494 /* Pods-DBVoiceTransfer-dummy.m */,
-				04AF9892B3E9EC97F0524CFC322BFEA0 /* Pods-DBVoiceTransfer-frameworks.sh */,
-				E1DF2E384B9B43721888D1E9D0BF1105 /* Pods-DBVoiceTransfer-resources.sh */,
-				8EB33F8FAC5013565C9DE33C7539B807 /* Pods-DBVoiceTransfer.debug.xcconfig */,
-				DFC87E6912F7E846A264D288ADFB216D /* Pods-DBVoiceTransfer.release.xcconfig */,
+				229A1E65A7BEFA72EEDAF993788AA4C3 /* Pods-DBVoiceTransferTests-acknowledgements.markdown */,
+				DEF3AACCA3930B61FB8333397AD8A2E0 /* Pods-DBVoiceTransferTests-acknowledgements.plist */,
+				1AB1E58742C1D6C99431B2454D203520 /* Pods-DBVoiceTransferTests-dummy.m */,
+				472424F800C944E3FAE50E72329D0B60 /* Pods-DBVoiceTransferTests-frameworks.sh */,
+				99200F28755DF88EAF77E9C8FB901D68 /* Pods-DBVoiceTransferTests-resources.sh */,
+				451D8422C4BD62E6C27218327B388A8D /* Pods-DBVoiceTransferTests.debug.xcconfig */,
+				584F8131D5ACAD38E45BDE2F4609C899 /* Pods-DBVoiceTransferTests.release.xcconfig */,
 			);
-			name = "Pods-DBVoiceTransfer";
-			path = "Target Support Files/Pods-DBVoiceTransfer";
+			name = "Pods-DBVoiceTransferTests";
+			path = "Target Support Files/Pods-DBVoiceTransferTests";
 			sourceTree = "<group>";
 		};
 		0EFB0BDF468FD3448A289AC702449679 /* Frameworks */ = {
@@ -152,12 +174,27 @@
 			path = DBCommonLib;
 			sourceTree = "<group>";
 		};
-		55FA1839CADA5F61C92D16EC7ED73339 /* Targets Support Files */ = {
+		52E589F232B46EB108A0136F057C2F31 /* Pods-DBVoiceTransfer-DBBVoiceTransfer */ = {
 			isa = PBXGroup;
 			children = (
-				0B6203DFB151EFB65DAE1936152729ED /* Pods-DBVoiceTransfer */,
-				F15F3E4F055A355893B9B7B6017A35B4 /* Pods-DBVoiceTransferTests */,
-				A4BF7E5631146BE7A7EBB08C68F2678C /* Pods-DBVoiceTransferUITests */,
+				8FFA9E82CFA7F51615E25D186CDFC118 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-acknowledgements.markdown */,
+				DB25DACAADF3F257C11052503B845759 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-acknowledgements.plist */,
+				77F3E61157EC648BC2849582A475E230 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-dummy.m */,
+				72C5D41429CA8542742070F8CC189971 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-resources.sh */,
+				5BF5DE0C56E477E609A3FC71C1ED46D8 /* Pods-DBVoiceTransfer-DBBVoiceTransfer.debug.xcconfig */,
+				9C4C7C6A34AC8D06B8608BF0D0AADF68 /* Pods-DBVoiceTransfer-DBBVoiceTransfer.release.xcconfig */,
+			);
+			name = "Pods-DBVoiceTransfer-DBBVoiceTransfer";
+			path = "Target Support Files/Pods-DBVoiceTransfer-DBBVoiceTransfer";
+			sourceTree = "<group>";
+		};
+		55AF5C8088A050336EEAC13341BC5167 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE4698C74C05B6E8EE224DAF78A264AF /* Pods-DBVoiceTransfer */,
+				52E589F232B46EB108A0136F057C2F31 /* Pods-DBVoiceTransfer-DBBVoiceTransfer */,
+				0EE79B2C1265F8DB4C10E404398C98DE /* Pods-DBVoiceTransferTests */,
+				83E82A5166E8F98BD98FE5581183329D /* Pods-DBVoiceTransferUITests */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
@@ -173,38 +210,27 @@
 			path = "../Target Support Files/Toast";
 			sourceTree = "<group>";
 		};
+		83E82A5166E8F98BD98FE5581183329D /* Pods-DBVoiceTransferUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F540DCE05C1682F76E3ECC9A4F8CBA42 /* Pods-DBVoiceTransferUITests-acknowledgements.markdown */,
+				641421D3EB5E997C5A98F5AAB2FA2F4C /* Pods-DBVoiceTransferUITests-acknowledgements.plist */,
+				66771142F1C59866BD7DAB7ABAA4EDE2 /* Pods-DBVoiceTransferUITests-dummy.m */,
+				A374CB8D8D89CA0F47F0DEB95E33D6E6 /* Pods-DBVoiceTransferUITests-frameworks.sh */,
+				CC6D76A07E7F59E574BA7AD5B1BCE21A /* Pods-DBVoiceTransferUITests-resources.sh */,
+				9CB9F6BC525F82A6833001AC391438D9 /* Pods-DBVoiceTransferUITests.debug.xcconfig */,
+				963379B263A32CEFB931065C7247C791 /* Pods-DBVoiceTransferUITests.release.xcconfig */,
+			);
+			name = "Pods-DBVoiceTransferUITests";
+			path = "Target Support Files/Pods-DBVoiceTransferUITests";
+			sourceTree = "<group>";
+		};
 		87F4B55199570B31AD18E161DB077E47 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				A21D4E69078E803E4AC97DAA88F57A71 /* QuartzCore.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		A4BF7E5631146BE7A7EBB08C68F2678C /* Pods-DBVoiceTransferUITests */ = {
-			isa = PBXGroup;
-			children = (
-				931B992C7AED3B411559DF2CCCF3EDF4 /* Pods-DBVoiceTransferUITests-acknowledgements.markdown */,
-				627E66776FEAD045E06289B47809A05D /* Pods-DBVoiceTransferUITests-acknowledgements.plist */,
-				C77928A8A482FF38830716C522CBAD31 /* Pods-DBVoiceTransferUITests-dummy.m */,
-				D6B1E011AB0BC1CFE03E771D282A5513 /* Pods-DBVoiceTransferUITests-frameworks.sh */,
-				D1464678081F4C4D04F9E0DACF59E67F /* Pods-DBVoiceTransferUITests-resources.sh */,
-				EE5438DF307D8292C63F6EF237DD22C3 /* Pods-DBVoiceTransferUITests.debug.xcconfig */,
-				ECCB8E984BCEC49772D525A3CF07443C /* Pods-DBVoiceTransferUITests.release.xcconfig */,
-			);
-			name = "Pods-DBVoiceTransferUITests";
-			path = "Target Support Files/Pods-DBVoiceTransferUITests";
-			sourceTree = "<group>";
-		};
-		ACEC3B41A36514E398E41DCE16775CA5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F074A695AED7400F70C4F6B953EE032A /* libPods-DBVoiceTransfer.a */,
-				6C8A67248572564E0A6788DEFC9833D6 /* libPods-DBVoiceTransferTests.a */,
-				9DDAA93942BF583202F1D7461B74FB59 /* libPods-DBVoiceTransferUITests.a */,
-				0D98C2B7A009649F5FE8C005CFFC7BDE /* libToast.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		C7E291F7A5F45346BBD3790C3A1290D3 /* Toast */ = {
@@ -225,8 +251,8 @@
 				24390EFD555DD124430DFF9724065945 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				24DC47593E971C16CB869641674CE9F3 /* Pods */,
-				ACEC3B41A36514E398E41DCE16775CA5 /* Products */,
-				55FA1839CADA5F61C92D16EC7ED73339 /* Targets Support Files */,
+				F8297FEE86D3F6D3E48AFD10FA8F6804 /* Products */,
+				55AF5C8088A050336EEAC13341BC5167 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,19 +264,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F15F3E4F055A355893B9B7B6017A35B4 /* Pods-DBVoiceTransferTests */ = {
+		F8297FEE86D3F6D3E48AFD10FA8F6804 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1862A42DE6952096D535E1908C72304 /* Pods-DBVoiceTransferTests-acknowledgements.markdown */,
-				08E1B2AAE7C7AE1D429A8562F006D1E9 /* Pods-DBVoiceTransferTests-acknowledgements.plist */,
-				0FBD0CC976F95F736F5D8A517876338E /* Pods-DBVoiceTransferTests-dummy.m */,
-				28AD5EE9F3E6ADA16555890A01A4569A /* Pods-DBVoiceTransferTests-frameworks.sh */,
-				90171B4C81E185AC4A83DBB155D7DBB0 /* Pods-DBVoiceTransferTests-resources.sh */,
-				D857DAE92CC464C3896AAAABBDBA1603 /* Pods-DBVoiceTransferTests.debug.xcconfig */,
-				C96B73627EFE1668204C5B80D169932D /* Pods-DBVoiceTransferTests.release.xcconfig */,
+				C288E644B87BEBF91A5153EC25317B23 /* libPods-DBVoiceTransfer.a */,
+				13A25C7D6028C18AEF2497314E49172F /* libPods-DBVoiceTransfer-DBBVoiceTransfer.a */,
+				1798F2001EFD5A64943F00D209F065D6 /* libPods-DBVoiceTransferTests.a */,
+				B15625E12E1D3F2E5F1E4D18CDF770BD /* libPods-DBVoiceTransferUITests.a */,
+				E0DB7FC2CD1F1EEA33CA0E10A11AB7B6 /* libToast.a */,
 			);
-			name = "Pods-DBVoiceTransferTests";
-			path = "Target Support Files/Pods-DBVoiceTransferTests";
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FE4698C74C05B6E8EE224DAF78A264AF /* Pods-DBVoiceTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				1B23CE67A21405D5BBA85BE2DEDC90DD /* Pods-DBVoiceTransfer-acknowledgements.markdown */,
+				3D3248ABA5B2EC10D3BD18B732AFA42A /* Pods-DBVoiceTransfer-acknowledgements.plist */,
+				F7EC05805B63010C5B44EE1F2CE4681C /* Pods-DBVoiceTransfer-dummy.m */,
+				0F75236E964ACEEBB8B256C9D3B66A07 /* Pods-DBVoiceTransfer-frameworks.sh */,
+				C5DCC593E9840462341823A314CCC8FC /* Pods-DBVoiceTransfer-resources.sh */,
+				3D8CA95DE38B24CECB0E25610D658AA4 /* Pods-DBVoiceTransfer.debug.xcconfig */,
+				8718CD3CE9C4E7F200492527E1808086 /* Pods-DBVoiceTransfer.release.xcconfig */,
+			);
+			name = "Pods-DBVoiceTransfer";
+			path = "Target Support Files/Pods-DBVoiceTransfer";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +311,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7386D1549482CF351CE09392B8D3026F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE034A42AA9C728EC338A95A216E25A6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -304,7 +349,7 @@
 			);
 			name = "Pods-DBVoiceTransfer";
 			productName = "Pods-DBVoiceTransfer";
-			productReference = F074A695AED7400F70C4F6B953EE032A /* libPods-DBVoiceTransfer.a */;
+			productReference = C288E644B87BEBF91A5153EC25317B23 /* libPods-DBVoiceTransfer.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		6E4FE78D6B675C2AAA9D00856D2D06F5 /* Pods-DBVoiceTransferTests */ = {
@@ -322,7 +367,25 @@
 			);
 			name = "Pods-DBVoiceTransferTests";
 			productName = "Pods-DBVoiceTransferTests";
-			productReference = 6C8A67248572564E0A6788DEFC9833D6 /* libPods-DBVoiceTransferTests.a */;
+			productReference = 1798F2001EFD5A64943F00D209F065D6 /* libPods-DBVoiceTransferTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A27F6E482DB28512F8B1BCF601E03192 /* Pods-DBVoiceTransfer-DBBVoiceTransfer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13853F72083992ADA2F25AFD5AA0BB91 /* Build configuration list for PBXNativeTarget "Pods-DBVoiceTransfer-DBBVoiceTransfer" */;
+			buildPhases = (
+				DE034A42AA9C728EC338A95A216E25A6 /* Headers */,
+				BF2175B6352C8C0E8770D69628E28868 /* Sources */,
+				570A46884E974A63D7BBA5430A94E836 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64841D0B1CF6F23CE7D2CEC0F6F2BC4E /* PBXTargetDependency */,
+			);
+			name = "Pods-DBVoiceTransfer-DBBVoiceTransfer";
+			productName = "Pods-DBVoiceTransfer-DBBVoiceTransfer";
+			productReference = 13A25C7D6028C18AEF2497314E49172F /* libPods-DBVoiceTransfer-DBBVoiceTransfer.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		C54E57B8AE0436278F2F322D7123EC35 /* Toast */ = {
@@ -339,7 +402,7 @@
 			);
 			name = Toast;
 			productName = Toast;
-			productReference = 0D98C2B7A009649F5FE8C005CFFC7BDE /* libToast.a */;
+			productReference = E0DB7FC2CD1F1EEA33CA0E10A11AB7B6 /* libToast.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		FE16584EC025FDB8226E367457BCAB2B /* Pods-DBVoiceTransferUITests */ = {
@@ -357,7 +420,7 @@
 			);
 			name = "Pods-DBVoiceTransferUITests";
 			productName = "Pods-DBVoiceTransferUITests";
-			productReference = 9DDAA93942BF583202F1D7461B74FB59 /* libPods-DBVoiceTransferUITests.a */;
+			productReference = B15625E12E1D3F2E5F1E4D18CDF770BD /* libPods-DBVoiceTransferUITests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -378,11 +441,12 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = ACEC3B41A36514E398E41DCE16775CA5 /* Products */;
+			productRefGroup = F8297FEE86D3F6D3E48AFD10FA8F6804 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				0D0EF493A7CE98DA1B5B0D25C47D4BD4 /* Pods-DBVoiceTransfer */,
+				A27F6E482DB28512F8B1BCF601E03192 /* Pods-DBVoiceTransfer-DBBVoiceTransfer */,
 				6E4FE78D6B675C2AAA9D00856D2D06F5 /* Pods-DBVoiceTransferTests */,
 				FE16584EC025FDB8226E367457BCAB2B /* Pods-DBVoiceTransferUITests */,
 				C54E57B8AE0436278F2F322D7123EC35 /* Toast */,
@@ -416,6 +480,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF2175B6352C8C0E8770D69628E28868 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20A7BD5CC3388260B2920EB70346A382 /* Pods-DBVoiceTransfer-DBBVoiceTransfer-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5D6AAFF9214DC40F197BBBA61A586F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -427,6 +499,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		64841D0B1CF6F23CE7D2CEC0F6F2BC4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Toast;
+			target = C54E57B8AE0436278F2F322D7123EC35 /* Toast */;
+			targetProxy = AE0C1DBB8FC5FCA4BF913D6BA71F0460 /* PBXContainerItemProxy */;
+		};
 		72C090EBC683A761C085B9D1BC18F350 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-DBVoiceTransfer";
@@ -540,7 +618,7 @@
 		};
 		0E7670F6EDDE3D460A43634F5FC0ECCC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D857DAE92CC464C3896AAAABBDBA1603 /* Pods-DBVoiceTransferTests.debug.xcconfig */;
+			baseConfigurationReference = 451D8422C4BD62E6C27218327B388A8D /* Pods-DBVoiceTransferTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -647,7 +725,7 @@
 		};
 		4CBF89F322FFFCBA0C01BDEF8CB8726B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C96B73627EFE1668204C5B80D169932D /* Pods-DBVoiceTransferTests.release.xcconfig */;
+			baseConfigurationReference = 584F8131D5ACAD38E45BDE2F4609C899 /* Pods-DBVoiceTransferTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -668,7 +746,7 @@
 		};
 		7720768BE3B74D557CE73EAEF35E2FEC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE5438DF307D8292C63F6EF237DD22C3 /* Pods-DBVoiceTransferUITests.debug.xcconfig */;
+			baseConfigurationReference = 9CB9F6BC525F82A6833001AC391438D9 /* Pods-DBVoiceTransferUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -688,7 +766,7 @@
 		};
 		7CE470DA569B40B8F4A93F4A519A446D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EB33F8FAC5013565C9DE33C7539B807 /* Pods-DBVoiceTransfer.debug.xcconfig */;
+			baseConfigurationReference = 3D8CA95DE38B24CECB0E25610D658AA4 /* Pods-DBVoiceTransfer.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -706,9 +784,9 @@
 			};
 			name = Debug;
 		};
-		C69BD7E9E83AB5AD1870292125442BF1 /* Release */ = {
+		A56D46DD855C6F7FDC2491355ED95D64 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFC87E6912F7E846A264D288ADFB216D /* Pods-DBVoiceTransfer.release.xcconfig */;
+			baseConfigurationReference = 9C4C7C6A34AC8D06B8608BF0D0AADF68 /* Pods-DBVoiceTransfer-DBBVoiceTransfer.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -727,9 +805,50 @@
 			};
 			name = Release;
 		};
+		C69BD7E9E83AB5AD1870292125442BF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8718CD3CE9C4E7F200492527E1808086 /* Pods-DBVoiceTransfer.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C85AEFE9D6B5A16C0E04B7F282BD1B96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BF5DE0C56E477E609A3FC71C1ED46D8 /* Pods-DBVoiceTransfer-DBBVoiceTransfer.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		E11C9EB57AF4A9A942491A62DE2E8976 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECCB8E984BCEC49772D525A3CF07443C /* Pods-DBVoiceTransferUITests.release.xcconfig */;
+			baseConfigurationReference = 963379B263A32CEFB931065C7247C791 /* Pods-DBVoiceTransferUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -751,6 +870,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		13853F72083992ADA2F25AFD5AA0BB91 /* Build configuration list for PBXNativeTarget "Pods-DBVoiceTransfer-DBBVoiceTransfer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C85AEFE9D6B5A16C0E04B7F282BD1B96 /* Debug */,
+				A56D46DD855C6F7FDC2491355ED95D64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3C14B826705508741DFDBE781CD80057 /* Build configuration list for PBXNativeTarget "Pods-DBVoiceTransferUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
