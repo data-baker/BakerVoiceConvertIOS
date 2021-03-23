@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "DBBVoiceTransfer"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "声音转换的SDK"
   s.description  = <<-DESC
 标贝科技- iOS 变声SDK

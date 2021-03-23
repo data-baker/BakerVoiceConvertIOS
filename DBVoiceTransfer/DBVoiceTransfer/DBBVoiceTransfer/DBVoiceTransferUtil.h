@@ -24,9 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 1.打印日志 0:不打印日志(打印日志会在沙盒中保存一份text,方便我们查看,上线前要置为NO);
 @property (nonatomic, assign) BOOL log;
 
-// 
+// true代表启动服务端vad功能，默认false。如果启动系统会根据输入音频进行检测，过滤环境噪音。否则直接将原始输入音频进行转换。
 @property(nonatomic,assign)BOOL enableVad;
 
+// 发音人
 @property(nonatomic,copy)NSString * voiceName;
 
 
@@ -38,9 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param needPlay True: 需要播放； Flase:不需要播放
 - (void)startTransferNeedPlay:(BOOL)needPlay;
 
-/// 结束识别,结束识别并且关闭socket与麦克风
-- (void)endRecognizeAndCloseSocket;
-
+/// 结束转换并且关闭socket与麦克风
+- (void)endTransferAndCloseSocket;
 
 /// 本地文件转换，读取本地文件
 /// @param needPlay True: 需要播放； Flase:不需要播放
@@ -49,11 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 结束文件变声转换并且关闭服务端连接
 - (void)endFileTransferAndCloseSocket;
 
-
 /// 默认保存在Temp文件夹下
 /// @param fileName 文件名称
 - (NSString *)getSavePath:(NSString *)fileName;
-
 
 @end
 

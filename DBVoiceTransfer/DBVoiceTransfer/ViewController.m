@@ -123,7 +123,7 @@ static NSString *DBAudioMicroData = @"audioMicroData";
         self.voiceImageView.hidden = NO;
     }else {
         self.voiceImageView.hidden = YES;
-        [self.voiceTransferUtil endRecognizeAndCloseSocket];
+        [self.voiceTransferUtil endTransferAndCloseSocket];
     }
 }
 

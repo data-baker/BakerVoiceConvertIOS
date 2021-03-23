@@ -17,7 +17,6 @@
 static NSString *DBErrorDomain = @"com.BiaoBeri.DBVoiceTransferUtil";
 static NSString *DBFileName = @"transferPCMFile";
 
-
 typedef NS_ENUM(NSUInteger,DBAsrState) {
     DBAsrStateInit  = 0, // 初始化
     DBAsrStateStart = 1, // 开始
@@ -119,7 +118,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     [self logMessage:@"socket开始链接"];
 }
 
-- (void)endRecognizeAndCloseSocket {
+- (void)endTransferAndCloseSocket {
     self.asrState = DBAsrStateWillEnd;
 }
 
@@ -155,26 +154,25 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     self.microphone = [[DBAudioMicrophone alloc] initWithSampleRate:sample_rate numerOfChannel:1];
     self.microphone.delegate = self;
     [self logMessage:@"打开麦克风"];
-    NSString *path = [self getSavePath:DBFileName];
-    NSLog(@"path:%@,handle:%@",path,self.transferPCMFileHandle);
 }
 
 - (void)closedAudioResource {
-    NSLog(@"----关闭音频资源----");
+    [self logMessage:@"----关闭音频资源----"];
     self.asrState = DBAsrStateDidEnd;
     [self.socketManager DBZWebSocketClose];
     [self.microphone stop];
     [self.transferPCMFileHandle closeFile];
-    [self logMessage:@"停止识别"];
 }
 
 - (void)playTransferData {
-    NSLog(@"---开始播放转换后的数据----");
     
+    [self logMessage:@"---开始播放转换后的数据----"];
+
     NSError *error;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
     if (error) {
-        NSLog(@"audio Session error :%@",error);
+        [self logMessage:[NSString stringWithFormat:@"audio Session error :%@",error]];
+
     }
     NSData *data = [NSData dataWithContentsOfFile:[self getSavePath:DBFileName]];
     
@@ -324,7 +322,6 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 }
 
 - (NSData *)transferData:(NSDictionary *)dict  audioData:(NSData *)audioData {
-    NSLog(@"dict:%@",dict);
     
     NSData *data = [[self dictionaryToJson:dict] dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -352,7 +349,6 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     NSData *jsonData = [data subdataWithRange:NSMakeRange(4, dataLength)];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSDictionary *jsonDict = [self dictionaryWithJsonString:jsonString];
-    NSLog(@"jsonDict:%@",jsonDict);
     DBTransferModel *model = [[DBTransferModel alloc]init];
     [model setValuesForKeysWithDictionary:jsonDict];
     if (model.errcode != 0) {
@@ -372,7 +368,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
             self.transferPCMFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
             [self.transferPCMFileHandle seekToEndOfFile];
             [self.transferPCMFileHandle writeData:subData];
-            NSLog(@"path:%@,handle:%@",path,self.transferPCMFileHandle);
+            [self logMessage:[NSString stringWithFormat:@"path:%@",path]];
         }
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(transferCallBack:isLast:)]) {
@@ -382,7 +378,9 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     
     if (model.lastpkg) {
         [self closedAudioResource];
-        [self playTransferData];
+        if (self.needPlay) {
+            [self playTransferData];
+        }
     }
 }
     // 解析音频数据
