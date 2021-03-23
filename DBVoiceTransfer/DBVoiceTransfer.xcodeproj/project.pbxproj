@@ -16,12 +16,6 @@
 		355DEFA92604B8CD0066FFDC /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA12604B8CC0066FFDC /* 2.png */; };
 		355DEFAA2604B8CD0066FFDC /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA22604B8CC0066FFDC /* 3.png */; };
 		355DEFAB2604B8CD0066FFDC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA32604B8CC0066FFDC /* 1.png */; };
-		35657BDF26089D900068AF5D /* DBVoiceTransferUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44D25260339B400F95017 /* DBVoiceTransferUtil.m */; };
-		35657BE926089DC20068AF5D /* DBTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FA54522604828600276269 /* DBTransferModel.m */; };
-		35657BF826089E820068AF5D /* DBVoiceTransferUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 35C44D24260339B400F95017 /* DBVoiceTransferUtil.h */; };
-		35657BFC26089E860068AF5D /* DBTransferModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FA54512604828600276269 /* DBTransferModel.h */; };
-		35657C0026089E890068AF5D /* DBTransferProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 35C44D2B26033A0300F95017 /* DBTransferProtocol.h */; };
-		35657C0426089E8C0068AF5D /* DBTransferEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = 35596439260889FE00614462 /* DBTransferEnum.h */; };
 		35C44C9C2602F18400F95017 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44C9B2602F18400F95017 /* AppDelegate.m */; };
 		35C44C9F2602F18400F95017 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44C9E2602F18400F95017 /* SceneDelegate.m */; };
 		35C44CA22602F18400F95017 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44CA12602F18400F95017 /* ViewController.m */; };
@@ -36,6 +30,8 @@
 		35C44D0226032E4E00F95017 /* XCHudHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44CFE26032E4E00F95017 /* XCHudHelper.m */; };
 		35C44D152603393A00F95017 /* DBBVoiceTransfer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C44D0E2603393A00F95017 /* DBBVoiceTransfer.framework */; };
 		35C44D162603393A00F95017 /* DBBVoiceTransfer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35C44D0E2603393A00F95017 /* DBBVoiceTransfer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35C6C16B2609836D0011DF42 /* DBVoiceTransferUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44D25260339B400F95017 /* DBVoiceTransferUtil.m */; };
+		35C6C16F260983700011DF42 /* DBTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FA54522604828600276269 /* DBTransferModel.m */; };
 		4BF73DE689673017883F1A56 /* libPods-DBVoiceTransferUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E33D0FA250E1933AA0CC47 /* libPods-DBVoiceTransferUITests.a */; };
 		59490243F0A23300316FA0DC /* libPods-DBVoiceTransfer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DF23360AE76B4922BFB29F /* libPods-DBVoiceTransfer.a */; };
 		5CE131BA704F357CC31A40CD /* libPods-DBVoiceTransferTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0943EE7D62CA9772AAE492A4 /* libPods-DBVoiceTransferTests.a */; };
@@ -316,10 +312,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35657C0026089E890068AF5D /* DBTransferProtocol.h in Headers */,
-				35657BF826089E820068AF5D /* DBVoiceTransferUtil.h in Headers */,
-				35657C0426089E8C0068AF5D /* DBTransferEnum.h in Headers */,
-				35657BFC26089E860068AF5D /* DBTransferModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +585,8 @@
 				35C44CF126032D5300F95017 /* DBLoginVC.m in Sources */,
 				35C44C9F2602F18400F95017 /* SceneDelegate.m in Sources */,
 				35C44D0226032E4E00F95017 /* XCHudHelper.m in Sources */,
+				35C6C16F260983700011DF42 /* DBTransferModel.m in Sources */,
+				35C6C16B2609836D0011DF42 /* DBVoiceTransferUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,8 +610,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35657BE926089DC20068AF5D /* DBTransferModel.m in Sources */,
-				35657BDF26089D900068AF5D /* DBVoiceTransferUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
