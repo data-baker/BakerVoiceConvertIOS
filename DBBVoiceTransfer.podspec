@@ -19,6 +19,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
   s.source       = { :git => 'https://github.com/data-baker/BakerVoiceConvertIOS.git', :tag => s.version}
    s.source_files  = 'DBVoiceTransfer/DBVoiceTransfer/DBBVoiceTransfer/*.{h,m}'
-   s.dependency 'DBCommonLib'
+   s.dependency 'DBCommonLib', '~>2.2.3'
 
 end
