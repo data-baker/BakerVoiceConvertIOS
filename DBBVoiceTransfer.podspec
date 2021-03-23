@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "DBBVoiceTransfer"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "声音转换的SDK"
   s.description  = <<-DESC
 标贝科技- iOS 变声SDK
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.author             = { "linxi" => "linxi@data-baker.com" }
   s.ios.deployment_target = '9.0'
   s.source       = { :git => 'https://github.com/data-baker/BakerVoiceConvertIOS.git', :tag => s.version}
-   s.source_files  = 'DBBVoiceTransfer/*'
+   s.source_files  = 'DBVoiceTransfer/DBVoiceTransfer/DBBVoiceTransfer/*.{h,m}'
    s.dependency 'DBCommonLib'
 
 end
