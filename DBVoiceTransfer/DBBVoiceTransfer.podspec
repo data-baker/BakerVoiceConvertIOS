@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author             = { "linxi" => "linxi@data-baker.com" }
   s.ios.deployment_target = '9.0'
-  s.source       = { :git => 'https://github.com/data-baker/BakerVoiceConvertIOS.git', :tag => s.version}
+  s.source       = { :git => 'git@github.com:data-baker/BakerVoiceConvertIOS.git', :tag => s.version}
    s.source_files  = 'DBBVoiceTransfer/**'
    s.dependency "DBCommonLib", "~>2.2.3"
 
