@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E6652A67643E6B708F85DB5 /* libPods-DBVoiceTransfer-DBBVoiceTransfer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4406CB7FFD150610BB8F6BF /* libPods-DBVoiceTransfer-DBBVoiceTransfer.a */; };
 		355DEFA42604B8CD0066FFDC /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEF9C2604B8CC0066FFDC /* 8.png */; };
 		355DEFA52604B8CD0066FFDC /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEF9D2604B8CC0066FFDC /* 4.png */; };
 		355DEFA62604B8CD0066FFDC /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEF9E2604B8CC0066FFDC /* 5.png */; };
@@ -28,14 +27,11 @@
 		35C44CF126032D5300F95017 /* DBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44CEF26032D5300F95017 /* DBLoginVC.m */; };
 		35C44D0126032E4E00F95017 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44CFD26032E4E00F95017 /* MBProgressHUD.m */; };
 		35C44D0226032E4E00F95017 /* XCHudHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44CFE26032E4E00F95017 /* XCHudHelper.m */; };
-		35C44D152603393A00F95017 /* DBBVoiceTransfer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C44D0E2603393A00F95017 /* DBBVoiceTransfer.framework */; };
-		35C44D162603393A00F95017 /* DBBVoiceTransfer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35C44D0E2603393A00F95017 /* DBBVoiceTransfer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35C6C16B2609836D0011DF42 /* DBVoiceTransferUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44D25260339B400F95017 /* DBVoiceTransferUtil.m */; };
 		35C6C16F260983700011DF42 /* DBTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FA54522604828600276269 /* DBTransferModel.m */; };
 		4BF73DE689673017883F1A56 /* libPods-DBVoiceTransferUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E33D0FA250E1933AA0CC47 /* libPods-DBVoiceTransferUITests.a */; };
 		59490243F0A23300316FA0DC /* libPods-DBVoiceTransfer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DF23360AE76B4922BFB29F /* libPods-DBVoiceTransfer.a */; };
 		5CE131BA704F357CC31A40CD /* libPods-DBVoiceTransferTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0943EE7D62CA9772AAE492A4 /* libPods-DBVoiceTransferTests.a */; };
-		DCA7A8E48A0C02FDAFD3B856 /* libPods-DBBVoiceTransfer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 063C20C41C65F34ADC15A4C6 /* libPods-DBBVoiceTransfer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +49,6 @@
 			remoteGlobalIDString = 35C44C962602F18400F95017;
 			remoteInfo = DBVoiceTransfer;
 		};
-		35C44D132603393A00F95017 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 35C44C8F2602F18400F95017 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 35C44D0D2603393A00F95017;
-			remoteInfo = DBBVoiceTransfer;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,7 +58,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				35C44D162603393A00F95017 /* DBBVoiceTransfer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,7 +104,6 @@
 		35C44CFE26032E4E00F95017 /* XCHudHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCHudHelper.m; sourceTree = "<group>"; };
 		35C44CFF26032E4E00F95017 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		35C44D0026032E4E00F95017 /* XCHudHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCHudHelper.h; sourceTree = "<group>"; };
-		35C44D0E2603393A00F95017 /* DBBVoiceTransfer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DBBVoiceTransfer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C44D112603393A00F95017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35C44D24260339B400F95017 /* DBVoiceTransferUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBVoiceTransferUtil.h; sourceTree = "<group>"; };
 		35C44D25260339B400F95017 /* DBVoiceTransferUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBVoiceTransferUtil.m; sourceTree = "<group>"; };
@@ -140,7 +127,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				59490243F0A23300316FA0DC /* libPods-DBVoiceTransfer.a in Frameworks */,
-				35C44D152603393A00F95017 /* DBBVoiceTransfer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,15 +143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BF73DE689673017883F1A56 /* libPods-DBVoiceTransferUITests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		35C44D0B2603393A00F95017 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0E6652A67643E6B708F85DB5 /* libPods-DBVoiceTransfer-DBBVoiceTransfer.a in Frameworks */,
-				DCA7A8E48A0C02FDAFD3B856 /* libPods-DBBVoiceTransfer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +170,6 @@
 				35C44C992602F18400F95017 /* DBVoiceTransfer */,
 				35C44CB52602F18700F95017 /* DBVoiceTransferTests */,
 				35C44CC02602F18800F95017 /* DBVoiceTransferUITests */,
-				35C44D0F2603393A00F95017 /* DBBVoiceTransfer */,
 				35C44C982602F18400F95017 /* Products */,
 				8EF907DF78886F29DAEBFBDA /* Pods */,
 				3C5C342BA2DCA3B81B390368 /* Frameworks */,
@@ -206,7 +182,6 @@
 				35C44C972602F18400F95017 /* DBVoiceTransfer.app */,
 				35C44CB22602F18700F95017 /* DBVoiceTransferTests.xctest */,
 				35C44CBD2602F18800F95017 /* DBVoiceTransferUITests.xctest */,
-				35C44D0E2603393A00F95017 /* DBBVoiceTransfer.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,6 +189,7 @@
 		35C44C992602F18400F95017 /* DBVoiceTransfer */ = {
 			isa = PBXGroup;
 			children = (
+				35C44D0F2603393A00F95017 /* DBBVoiceTransfer */,
 				35C44C9A2602F18400F95017 /* AppDelegate.h */,
 				35C44C9B2602F18400F95017 /* AppDelegate.m */,
 				35C44C9D2602F18400F95017 /* SceneDelegate.h */,
@@ -307,16 +283,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		35C44D092603393A00F95017 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		35C44C962602F18400F95017 /* DBVoiceTransfer */ = {
 			isa = PBXNativeTarget;
@@ -331,7 +297,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				35C44D142603393A00F95017 /* PBXTargetDependency */,
 			);
 			name = DBVoiceTransfer;
 			productName = DBVoiceTransfer;
@@ -376,25 +341,6 @@
 			productReference = 35C44CBD2602F18800F95017 /* DBVoiceTransferUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		35C44D0D2603393A00F95017 /* DBBVoiceTransfer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 35C44D172603393A00F95017 /* Build configuration list for PBXNativeTarget "DBBVoiceTransfer" */;
-			buildPhases = (
-				C6322DA63465154F6AA0BC97 /* [CP] Check Pods Manifest.lock */,
-				35C44D092603393A00F95017 /* Headers */,
-				35C44D0A2603393A00F95017 /* Sources */,
-				35C44D0B2603393A00F95017 /* Frameworks */,
-				35C44D0C2603393A00F95017 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DBBVoiceTransfer;
-			productName = DBBVoiceTransfer;
-			productReference = 35C44D0E2603393A00F95017 /* DBBVoiceTransfer.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -414,9 +360,6 @@
 						CreatedOnToolsVersion = 12.3;
 						TestTargetID = 35C44C962602F18400F95017;
 					};
-					35C44D0D2603393A00F95017 = {
-						CreatedOnToolsVersion = 12.3;
-					};
 				};
 			};
 			buildConfigurationList = 35C44C922602F18400F95017 /* Build configuration list for PBXProject "DBVoiceTransfer" */;
@@ -435,7 +378,6 @@
 				35C44C962602F18400F95017 /* DBVoiceTransfer */,
 				35C44CB12602F18700F95017 /* DBVoiceTransferTests */,
 				35C44CBC2602F18800F95017 /* DBVoiceTransferUITests */,
-				35C44D0D2603393A00F95017 /* DBBVoiceTransfer */,
 			);
 		};
 /* End PBXProject section */
@@ -467,13 +409,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		35C44CBB2602F18800F95017 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		35C44D0C2603393A00F95017 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -521,28 +456,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-DBVoiceTransfer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C6322DA63465154F6AA0BC97 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DBVoiceTransfer-DBBVoiceTransfer-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -606,13 +519,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		35C44D0A2603393A00F95017 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -625,11 +531,6 @@
 			isa = PBXTargetDependency;
 			target = 35C44C962602F18400F95017 /* DBVoiceTransfer */;
 			targetProxy = 35C44CBE2602F18800F95017 /* PBXContainerItemProxy */;
-		};
-		35C44D142603393A00F95017 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 35C44D0D2603393A00F95017 /* DBBVoiceTransfer */;
-			targetProxy = 35C44D132603393A00F95017 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -881,64 +782,6 @@
 			};
 			name = Release;
 		};
-		35C44D182603393A00F95017 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CB13D0AD637BB0ACFCFA7E6 /* Pods-DBVoiceTransfer-DBBVoiceTransfer.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VWR2NHV4B6;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DBBVoiceTransfer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shaw.text.DBBVoiceTransfer;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		35C44D192603393A00F95017 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F9734DB2DD96BA32675EA2F /* Pods-DBVoiceTransfer-DBBVoiceTransfer.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VWR2NHV4B6;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DBBVoiceTransfer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shaw.text.DBBVoiceTransfer;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -974,15 +817,6 @@
 			buildConfigurations = (
 				35C44CCD2602F18800F95017 /* Debug */,
 				35C44CCE2602F18800F95017 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		35C44D172603393A00F95017 /* Build configuration list for PBXNativeTarget "DBBVoiceTransfer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				35C44D182603393A00F95017 /* Debug */,
-				35C44D192603393A00F95017 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

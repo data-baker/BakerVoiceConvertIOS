@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D0EF493A7CE98DA1B5B0D25C47D4BD4"
+               BlueprintIdentifier = "2D6EE7F17237431F99114F07D14E300A"
                BuildableName = "libPods-DBVoiceTransfer.a"
                BlueprintName = "Pods-DBVoiceTransfer"
                ReferencedContainer = "container:Pods.xcodeproj">

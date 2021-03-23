@@ -6,13 +6,6 @@ target 'DBVoiceTransfer' do
   # use_frameworks!
    pod 'Toast', '~> 4.0.0'
    pod 'DBCommonLib', '~> 2.2.3'
-
-   target 'DBBVoiceTransfer' do
-#    inherit! :none
-
-   end
-
-   
   # Pods for DBVoiceTransfer
 
   target 'DBVoiceTransferTests' do
