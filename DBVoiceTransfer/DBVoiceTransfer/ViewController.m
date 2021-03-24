@@ -120,7 +120,6 @@ static NSString *DBAudioMicroData = @"audioMicroData";
     if (isStart) {
         [self.micAudioData resetBytesInRange:NSMakeRange(0, self.micAudioData.length)];
         [self.voiceTransferUtil startTransferNeedPlay:YES];
-        self.voiceImageView.hidden = NO;
     }else {
         self.voiceImageView.hidden = YES;
         [self.voiceTransferUtil endTransferAndCloseSocket];
@@ -190,17 +189,20 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 }
 
 - (void)onError:(NSInteger)code message:(NSString *)message {
-    if (code == DBErrorStateFileReadFailed) {
-        [[XCHudHelper sharedInstance] hideHud];
-        [self.view makeToast:message duration:2 position:CSToastPositionCenter];
-        return;
-    }
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults removeObjectForKey:@"token"];
-    [userDefaults removeObjectForKey:clientSecretKey];
-    [userDefaults removeObjectForKey:clientIdKey];
-    [self showLogInVC];
+    [self.view makeToast:message duration:2 position:CSToastPositionCenter];
     self.voiceImageView.hidden = YES;
+    self.startButton.selected = NO;
+    
+//    if (code == DBErrorStateFileReadFailed) {
+//        [[XCHudHelper sharedInstance] hideHud];
+//        return;
+//    }
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults removeObjectForKey:@"token"];
+//    [userDefaults removeObjectForKey:clientSecretKey];
+//    [userDefaults removeObjectForKey:clientIdKey];
+//    [self showLogInVC];
+//    self.voiceImageView.hidden = YES;
 }
 
 - (void)microphoneAudioData:(NSData *)data isLast:(BOOL)isLast {
@@ -211,6 +213,10 @@ static NSString *DBAudioMicroData = @"audioMicroData";
     }
 }
 
+- (void)readyToTransfer {
+    NSLog(@"开始声音转换");
+    self.voiceImageView.hidden = NO;
+}
 
 
 - (void)dbValues:(NSInteger)db {

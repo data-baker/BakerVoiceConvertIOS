@@ -215,8 +215,21 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
         [self.fileReadThread start];
         
     }else {
+        BOOL grant = [self reuestMicroGrant];
+        
+        if (!grant) {
+            [self logMessage:@"未获取麦克风权限"];
+            [self delegateErrorCode:DBErrorStateMicrophoneNoGranted message:@"没有麦克风权限"];
+            [self closedAudioResource];
+            return;
+        }
+        
+        [self delegateReadyToTransfer];
         [self openMicrophone];
         [self.microphone startRecord];
+        
+        
+        
     }
     
 }
@@ -447,6 +460,15 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
  
 }
 
+- (void)delegateReadyToTransfer {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(readyToTransfer)]) {
+            [self.delegate readyToTransfer];
+        }
+    });
+    
+}
+
 - (DBZSocketRocketUtility *)socketManager {
     if (!_socketManager) {
         _socketManager = [DBZSocketRocketUtility instance];
@@ -488,5 +510,23 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     }
     return _audioDir;
 }
+
+- (BOOL)reuestMicroGrant {
+    
+    dispatch_semaphore_t waitMicrophonePermission = dispatch_semaphore_create(0);
+    
+    __block BOOL hasMicrophonePermission = true;
+       if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
+           [[AVAudioSession sharedInstance] performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+               hasMicrophonePermission = granted;
+               dispatch_semaphore_signal(waitMicrophonePermission);
+            
+           }];
+           
+           dispatch_semaphore_wait(waitMicrophonePermission, DISPATCH_TIME_FOREVER);
+       }
+    return hasMicrophonePermission;
+}
+
 
 @end

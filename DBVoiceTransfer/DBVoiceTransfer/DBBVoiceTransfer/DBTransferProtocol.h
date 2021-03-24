@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol DBTransferProtocol <NSObject>
 
+// 开启声音转换
+- (void)readyToTransfer;
+
 /// 回调麦克风录制的数据 ,isLast: yes,最后一包，NO,非最后一包
 - (void)microphoneAudioData:(NSData *)data isLast:(BOOL)isLast;
 
