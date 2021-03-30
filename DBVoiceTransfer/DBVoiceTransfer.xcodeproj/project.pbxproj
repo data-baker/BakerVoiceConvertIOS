@@ -15,6 +15,8 @@
 		355DEFA92604B8CD0066FFDC /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA12604B8CC0066FFDC /* 2.png */; };
 		355DEFAA2604B8CD0066FFDC /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA22604B8CC0066FFDC /* 3.png */; };
 		355DEFAB2604B8CD0066FFDC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 355DEFA32604B8CC0066FFDC /* 1.png */; };
+		35970C4B2612CF1B00930AC3 /* DBRecordPCMDataPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 35970C482612CF1B00930AC3 /* DBRecordPCMDataPlayer.m */; };
+		35970C4C2612CF1B00930AC3 /* DSAQPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 35970C4A2612CF1B00930AC3 /* DSAQPool.m */; };
 		35C44C9C2602F18400F95017 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44C9B2602F18400F95017 /* AppDelegate.m */; };
 		35C44C9F2602F18400F95017 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44C9E2602F18400F95017 /* SceneDelegate.m */; };
 		35C44CA22602F18400F95017 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C44CA12602F18400F95017 /* ViewController.m */; };
@@ -80,6 +82,10 @@
 		355DEFA12604B8CC0066FFDC /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		355DEFA22604B8CC0066FFDC /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		355DEFA32604B8CC0066FFDC /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		35970C472612CF1B00930AC3 /* DSAQPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAQPool.h; sourceTree = "<group>"; };
+		35970C482612CF1B00930AC3 /* DBRecordPCMDataPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBRecordPCMDataPlayer.m; sourceTree = "<group>"; };
+		35970C492612CF1B00930AC3 /* DBRecordPCMDataPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBRecordPCMDataPlayer.h; sourceTree = "<group>"; };
+		35970C4A2612CF1B00930AC3 /* DSAQPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAQPool.m; sourceTree = "<group>"; };
 		35C44C972602F18400F95017 /* DBVoiceTransfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DBVoiceTransfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C44C9A2602F18400F95017 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		35C44C9B2602F18400F95017 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -247,6 +253,10 @@
 				35FA54522604828600276269 /* DBTransferModel.m */,
 				35C44D2B26033A0300F95017 /* DBTransferProtocol.h */,
 				35596439260889FE00614462 /* DBTransferEnum.h */,
+				35970C492612CF1B00930AC3 /* DBRecordPCMDataPlayer.h */,
+				35970C482612CF1B00930AC3 /* DBRecordPCMDataPlayer.m */,
+				35970C472612CF1B00930AC3 /* DSAQPool.h */,
+				35970C4A2612CF1B00930AC3 /* DSAQPool.m */,
 				35C44D112603393A00F95017 /* Info.plist */,
 			);
 			path = DBBVoiceTransfer;
@@ -497,6 +507,8 @@
 				35C44CAD2602F18700F95017 /* main.m in Sources */,
 				35C44CF126032D5300F95017 /* DBLoginVC.m in Sources */,
 				35C44C9F2602F18400F95017 /* SceneDelegate.m in Sources */,
+				35970C4C2612CF1B00930AC3 /* DSAQPool.m in Sources */,
+				35970C4B2612CF1B00930AC3 /* DBRecordPCMDataPlayer.m in Sources */,
 				35C44D0226032E4E00F95017 /* XCHudHelper.m in Sources */,
 				35C6C16F260983700011DF42 /* DBTransferModel.m in Sources */,
 				35C6C16B2609836D0011DF42 /* DBVoiceTransferUtil.m in Sources */,

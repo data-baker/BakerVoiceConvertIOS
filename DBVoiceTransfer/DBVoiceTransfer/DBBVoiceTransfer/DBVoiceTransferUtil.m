@@ -7,10 +7,12 @@
 
 #import "DBVoiceTransferUtil.h"
 #import <DBCommon/DBAudioMicrophone.h>
-#import <DBCommon/DBSynthesisPlayer.h>
+//#import <DBCommon/DBSynthesisPlayer.h>
 #import <DBCommon/DBZSocketRocketUtility.h>
 #import <DBCommon/DBUncaughtExceptionHandler.h>
 #import <DBCommon/DBLogManager.h>
+#import "DBRecordPCMDataPlayer.h"
+
 
 #define kAudioFolder @"AudioFolder" // 音频文件夹
 
@@ -25,7 +27,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 };
 
 
-@interface DBVoiceTransferUtil ()<DBSynthesisPlayerDelegate,DBAudioMicrophoneDelegate,DBZSocketCallBcakDelegate>
+@interface DBVoiceTransferUtil ()<DBRecordPCMDataPlayerDelegate,DBAudioMicrophoneDelegate,DBZSocketCallBcakDelegate>
 
 @property(nonatomic,copy)NSString  * clientId;
 
@@ -35,7 +37,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 
 @property (strong, nonatomic)DBAudioMicrophone *microphone;
 
-@property(nonatomic,strong)DBSynthesisPlayer * player;
+@property(nonatomic,strong)DBRecordPCMDataPlayer * player;
 
 @property(nonatomic,strong)NSMutableDictionary* onlineRecognizeParameters;
 
@@ -64,6 +66,8 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 @property (nonatomic) int sizeToRead;
 @property (nonatomic, retain) NSFileHandle *fileHandle;
 @property (nonatomic, retain) NSThread *fileReadThread;
+
+@property(nonatomic,strong)NSMutableData * playerData;
 
 
 @end
@@ -104,6 +108,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     self.needPlay = needPlay;
     self.firstFlag = YES;
     self.isFileTransfer = isFileTransfer;
+    self.playerData = [NSMutableData data];
     [self startSocketAndRecognize];
 }
 
@@ -132,7 +137,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 - (void)startTransferWithFilePath:(NSString *)filePath needPaley:(BOOL)needPlay {
     self.filePath = filePath;
     self.isFileTransfer = YES;
-    self.sizeToRead = 16000 * 0.1 * 16 / 8;
+    self.sizeToRead = 16000 * 1 * 16 / 8;
     self.hasReadFileSize = 0;
     [self fileTransferNeedPlay:needPlay];
 }
@@ -167,23 +172,37 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 - (void)playTransferData {
     
     [self logMessage:@"---开始播放转换后的数据----"];
+    [self configureAudioSeesion];
+    NSData *data = [NSData dataWithContentsOfFile:[self getSavePath:DBFileName]];
+    [self.player stop];
+    [self.player play:data];
+}
 
+- (void)playAudioData:(NSData *)data endFlag:(BOOL)endflag {
+    [self logMessage:[NSString stringWithFormat:@"playerData Length:%@",@(self.playerData.length)]];
+    [self logMessage:@"---------- 准备播放--------"];
+    [self.player play:data];
+    [self readlyToPlay];
+    [self logMessage:@"---------- 开始播放--------"];
+//    }
+   
+}
+
+
+- (void)configureAudioSeesion {
     NSError *error;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
     if (error) {
         [self logMessage:[NSString stringWithFormat:@"audio Session error :%@",error]];
 
     }
-    NSData *data = [NSData dataWithContentsOfFile:[self getSavePath:DBFileName]];
-    
-    [self.player stopPlay];
-    self.player = nil;
-    [self.player appendData:data totalDatalength:data.length endFlag:YES];
-    [self.player startPlay];
-    
 }
 
 // MARK: Player的播放回调
+
+- (void)PCMPlayerDidFinishPlaying {
+    [self playFinished];
+}
 
 /// 准备好了，可以开始播放了，回调
 - (void)readlyToPlay {
@@ -204,6 +223,7 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 
 
 // MARK: Websocket Delegate Methods
+    
 - (void)webSocketDidOpenNote {
     [self logMessage:@"socket链接成功"];
     self.asrState = DBAsrStateStart;
@@ -227,9 +247,6 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
         [self delegateReadyToTransfer];
         [self openMicrophone];
         [self.microphone startRecord];
-        
-        
-        
     }
     
 }
@@ -252,19 +269,21 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
         [self.fileHandle closeFile];
         self.hasReadFileSize += [data length];
         if ([data length] == 0) {
+            [self logMessage:@"文件读写完成"];
             self.asrState = DBAsrStateDidEnd;
             [self webSocketPostData:data];
             break;
         }else {
             [self webSocketPostData:data];
-
         }
     }
 }
 
 
 - (void)webSocketdidReceiveMessageNote:(id)object {
+    
     [self transferResponseData:object];
+    
 }
 
 - (void)webSocketDidCloseNote:(id)object {
@@ -303,6 +322,9 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     [self webSocketPostData:data];
 }
 
+- (void)sendDataToSever:(NSData *)audioData {
+    [self sendDataToSever:audioData];
+}
 
 - (void)webSocketPostData:(NSData *)audioData {
     
@@ -369,29 +391,38 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
         return ;
     }
     
-    
     NSInteger location = 4 + dataLength;
+    NSString *path = [self getSavePath:DBFileName];
+
     if (data.length - location > 0) {
         NSData *subData = [data subdataWithRange:NSMakeRange(location, data.length - location)];
         if (self.firstFlag) {
-            [subData writeToFile:[self getSavePath:DBFileName] atomically:YES];
+            
+            BOOL ret = [[NSFileManager defaultManager] fileExistsAtPath:path];
+            if (ret) {
+                [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+            }
+            [subData writeToFile:path atomically:YES];
             self.firstFlag = NO;
         }else {
-            NSString *path = [self getSavePath:DBFileName];
             self.transferPCMFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
             [self.transferPCMFileHandle seekToEndOfFile];
             [self.transferPCMFileHandle writeData:subData];
+            [self.transferPCMFileHandle closeFile];
             [self logMessage:[NSString stringWithFormat:@"path:%@",path]];
         }
         
-        if (self.delegate && [self.delegate respondsToSelector:@selector(transferCallBack:isLast:)]) {
-            [self.delegate transferCallBack:subData isLast:model.lastpkg];
+        [self delegateResponseData:subData lastFlag:model.lastpkg];
+        if (self.isFileTransfer && self.needPlay) {
+            [self playAudioData:subData endFlag:model.lastpkg];
         }
     }
+  
+    
     
     if (model.lastpkg) {
         [self closedAudioResource];
-        if (self.needPlay) {
+        if (self.needPlay && !self.isFileTransfer) {
             [self playTransferData];
         }
     }
@@ -460,6 +491,14 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
  
 }
 
+- (void)delegateResponseData:(NSData *)data lastFlag:(BOOL)lastFlag {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(transferCallBack:isLast:)]) {
+            [self.delegate transferCallBack:data isLast:lastFlag];
+        }
+    });
+}
+
 - (void)delegateReadyToTransfer {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.delegate && [self.delegate respondsToSelector:@selector(readyToTransfer)]) {
@@ -487,10 +526,10 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     return _microphone;
 }
     
-- (DBSynthesisPlayer *)player {
+- (DBRecordPCMDataPlayer *)player {
     if (!_player) {
-        _player = [[DBSynthesisPlayer alloc] init];
-        _player.audioType = DBTTSAudioTypePCM16K;
+        _player = [[DBRecordPCMDataPlayer alloc] init];
+//        _player.audioType = DBTTSAudioTypePCM16K;
         _player.delegate = (id)self;
     }
     return _player;

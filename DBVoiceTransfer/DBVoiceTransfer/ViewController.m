@@ -119,11 +119,14 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 - (void)startRecord:(BOOL)isStart {
     if (isStart) {
         [self.micAudioData resetBytesInRange:NSMakeRange(0, self.micAudioData.length)];
+        self.micAudioData = [NSMutableData data];
         [self.voiceTransferUtil startTransferNeedPlay:YES];
     }else {
         self.voiceImageView.hidden = YES;
         [self.voiceTransferUtil endTransferAndCloseSocket];
     }
+    [self setButton:self.fileButton enable:!isStart];
+    
 }
 
 
@@ -137,7 +140,7 @@ static NSString *DBAudioMicroData = @"audioMicroData";
     }else {
         [self.voiceTransferUtil endFileTransferAndCloseSocket];
     }
-    
+    [self setButton:self.startButton enable:!button.isSelected];
 }
 
 
@@ -208,7 +211,15 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 - (void)microphoneAudioData:(NSData *)data isLast:(BOOL)isLast {
     [self.micAudioData appendData:data];
     if (isLast) {
-        [self.micAudioData writeToFile:[self.voiceTransferUtil getSavePath:DBAudioMicroData] atomically:YES];
+        
+        NSString *path = [self.voiceTransferUtil getSavePath:DBAudioMicroData];
+        BOOL ret = [[NSFileManager defaultManager] fileExistsAtPath:path];
+        if (ret) {
+            [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+            NSLog(@"清除历史文件");
+        }
+        
+        [self.micAudioData writeToFile:path atomically:YES];
         NSLog(@"self.micAudioData length:%@",@(self.micAudioData.length));
     }
 }
@@ -250,10 +261,11 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 - (void)transferCallBack:(NSData *)data isLast:(BOOL)isLast {
     NSLog(@"dataLength:%@ isLast:%@,",@(data.length),@(isLast));
     
-    if (isLast) {
+//    if (isLast) {
         self.fileButton.selected = NO;
+    [self setButton:self.startButton enable:YES];
         [[XCHudHelper sharedInstance] hideHud];
-    }
+//    }
     
 }
 
@@ -262,6 +274,16 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 }
 - (void)playFinished {
     NSLog(@"%s playFinished",__func__);
+}
+
+
+- (void)setButton:(UIButton *)button enable:(BOOL)enable {
+    if (enable) {
+        button.backgroundColor = [UIColor systemTealColor];
+    }else {
+        button.backgroundColor = [UIColor lightGrayColor];
+    }
+    button.userInteractionEnabled = enable;
 }
 
 

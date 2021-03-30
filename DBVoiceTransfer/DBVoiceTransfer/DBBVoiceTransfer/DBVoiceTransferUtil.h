@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DBTransferProtocol.h"
-#import <DBCommon/DBSynthesisPlayer.h>
+//#import <DBCommon/DBSynthesisPlayer.h>
 #import <DBCommon/DBAuthentication.h>
 #import "DBTransferEnum.h"
 #import "DBTransferModel.h"
@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 结束文件变声转换并且关闭服务端连接
 - (void)endFileTransferAndCloseSocket;
+
 
 /// 默认保存在Temp文件夹下
 /// @param fileName 文件名称
