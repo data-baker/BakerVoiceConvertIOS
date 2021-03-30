@@ -1,20 +1,21 @@
 PODS:
-  - DBCommonLib (2.2.3)
+  - DBCommonLib (2.2.5)
   - Toast (4.0.0)
 
 DEPENDENCIES:
-  - DBCommonLib (~> 2.2.3)
+  - DBCommonLib (~> 2.2.5)
   - Toast (~> 4.0.0)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - DBCommonLib
+  trunk:
     - Toast
 
 SPEC CHECKSUMS:
-  DBCommonLib: 0541e78e7f6e0f52b6d2dc809fa15cfccf691f78
+  DBCommonLib: b65dca8a9c0784525a906c23b7724c56f3a187f7
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: c59cea2ba4df210c50860b13f8da63421fb4d41a
+PODFILE CHECKSUM: 9bfaa4a30ce8f586a51f1eac4c9e78da34dae6a4
 
 COCOAPODS: 1.10.1

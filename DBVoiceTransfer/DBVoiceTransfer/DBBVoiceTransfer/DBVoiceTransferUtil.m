@@ -65,7 +65,6 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 @property (nonatomic, retain) NSFileHandle *fileHandle;
 @property (nonatomic, retain) NSThread *fileReadThread;
 
-
 @end
 
 
@@ -102,6 +101,10 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 - (void)startTransferNeedPlay:(BOOL)needPlay isFileTransfer:(BOOL)isFileTransfer {
     [self removeLocalDataWithPath:DBFileName];
     self.needPlay = needPlay;
+    if (needPlay) {
+        [self.player stopPlay];
+        self.player = nil;
+    }
     self.firstFlag = YES;
     self.isFileTransfer = isFileTransfer;
     [self startSocketAndRecognize];
@@ -180,6 +183,14 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
     self.player = nil;
     [self.player appendData:data totalDatalength:data.length endFlag:YES];
     [self.player startPlay];
+    
+}
+
+- (void)playAudioData:(NSData *)data endFlag:(BOOL)endFlag {
+    [self.player appendData:data totalDatalength:data.length endFlag:endFlag];
+    if (!self.player.isPlayerPlaying) {
+        [self.player startPlay];
+    }
     
 }
 
@@ -273,7 +284,9 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 
 
 - (void)webSocketdidConnectFailed:(id)object {
-    [self logMessage:@"服务器连接关闭"];
+    NSString *message = [NSString stringWithFormat:@"服务器关闭: %@",object];
+    [self logMessage:message];
+//    [self delegateErrorCode:<#(NSInteger)#>po message:<#(NSString *)#>];
 }
 
 
@@ -382,16 +395,21 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
             [self.transferPCMFileHandle seekToEndOfFile];
             [self.transferPCMFileHandle writeData:subData];
             [self logMessage:[NSString stringWithFormat:@"path:%@",path]];
+        
         }
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(transferCallBack:isLast:)]) {
             [self.delegate transferCallBack:subData isLast:model.lastpkg];
         }
+        
+        if (self.isFileTransfer) {
+            [self playAudioData:subData endFlag:model.lastpkg];
+        }
     }
     
     if (model.lastpkg) {
         [self closedAudioResource];
-        if (self.needPlay) {
+        if (self.needPlay && !self.isFileTransfer) {
             [self playTransferData];
         }
     }

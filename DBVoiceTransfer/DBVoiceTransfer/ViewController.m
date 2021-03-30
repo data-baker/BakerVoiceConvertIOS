@@ -117,8 +117,11 @@ static NSString *DBAudioMicroData = @"audioMicroData";
     
 }
 - (void)startRecord:(BOOL)isStart {
+    
     if (isStart) {
         [self.micAudioData resetBytesInRange:NSMakeRange(0, self.micAudioData.length)];
+        [self.micAudioData setLength:0];
+        
         [self.voiceTransferUtil startTransferNeedPlay:YES];
     }else {
         self.voiceImageView.hidden = YES;
@@ -250,11 +253,8 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 - (void)transferCallBack:(NSData *)data isLast:(BOOL)isLast {
     NSLog(@"dataLength:%@ isLast:%@,",@(data.length),@(isLast));
     
-    if (isLast) {
-        self.fileButton.selected = NO;
-        [[XCHudHelper sharedInstance] hideHud];
-    }
-    
+    self.fileButton.selected = NO;
+    [[XCHudHelper sharedInstance] hideHud];
 }
 
 - (void)readlyToPlay {

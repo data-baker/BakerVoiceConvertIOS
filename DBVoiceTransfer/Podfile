@@ -1,11 +1,16 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
+platform:ios,'9.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
 target 'DBVoiceTransfer' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
    pod 'Toast', '~> 4.0.0'
-   pod 'DBCommonLib', '~> 2.2.3'
+#   pod 'DBCommonLib', :path =>  '/Users/linxi/标贝科技/公共库/基础库-github/DBCommonLib'
+
+   pod 'DBCommonLib', '~> 2.2.5'
   # Pods for DBVoiceTransfer
 
   target 'DBVoiceTransferTests' do
