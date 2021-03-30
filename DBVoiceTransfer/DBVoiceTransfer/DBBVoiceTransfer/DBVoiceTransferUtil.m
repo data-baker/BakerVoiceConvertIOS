@@ -292,6 +292,16 @@ typedef NS_ENUM(NSUInteger,DBAsrState) {
 
 
 - (void)webSocketdidConnectFailed:(id)object {
+    
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dict = (NSDictionary *)object;
+        if ([dict[@"code"] integerValue] == 90005) {
+            [self delegateErrorCode:DBErrorStateFailedSocketConnect message:@"failed connect sever"];
+            return;
+        }
+        
+    }
+    
     [self logMessage:@"服务器连接关闭"];
 }
 

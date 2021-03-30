@@ -195,6 +195,11 @@ static NSString *DBAudioMicroData = @"audioMicroData";
     [self.view makeToast:message duration:2 position:CSToastPositionCenter];
     self.voiceImageView.hidden = YES;
     self.startButton.selected = NO;
+    self.fileButton.selected = NO;
+    [[XCHudHelper sharedInstance] hideHud];
+    
+    [self setButton:self.startButton enable:YES];
+    [self setButton:self.fileButton enable:YES];
     
 //    if (code == DBErrorStateFileReadFailed) {
 //        [[XCHudHelper sharedInstance] hideHud];
