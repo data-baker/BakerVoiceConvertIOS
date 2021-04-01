@@ -134,6 +134,12 @@ typedef NS_ENUM(NSUInteger,DBTransferMode) {
     [self.socketManager DBZWebSocketClose];
 }
 
+// MARK: 播放控制
+
+- (void)stopPlay {
+    [self.player stop];
+}
+
 // MARK: ------ 开启文件识别 ---------
 
 - (void)startTransferWithFilePath:(NSString *)filePath needPaley:(BOOL)needPlay {

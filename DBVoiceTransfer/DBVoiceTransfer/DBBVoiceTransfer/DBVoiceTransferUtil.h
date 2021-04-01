@@ -63,6 +63,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)webSocketPostData:(NSData *)audioData isEnd:(BOOL)isEnd;
 
 
+/// 停止播放
+- (void)stopPlay;
+
+
 
 @end
 
