@@ -54,6 +54,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param fileName 文件名称
 - (NSString *)getSavePath:(NSString *)fileName;
 
+/// 先开启网络连接，接收到网络连接成功回调后再通过`webSocketPostData:isEnd`发送音频数据
+- (void)startServeConnetNeedPlay:(BOOL)needPlay;
+
+/// 向服务端发送数据
+/// @param audioData 音频数据
+/// @param isEnd 最后一包数据时isEnd设置为Yes,否则设置为NO
+- (void)webSocketPostData:(NSData *)audioData isEnd:(BOOL)isEnd;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

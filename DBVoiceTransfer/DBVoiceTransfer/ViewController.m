@@ -14,8 +14,6 @@
 
 static NSString *DBAudioMicroData = @"audioMicroData";
 
-
-
 @interface ViewController ()<UIPickerViewDelegate,UIPickerViewDataSource,DBTransferProtocol>
 @property (weak, nonatomic) IBOutlet UILabel *desLabel;
 @property (weak, nonatomic) IBOutlet UILabel *msgLabel;
@@ -40,10 +38,16 @@ static NSString *DBAudioMicroData = @"audioMicroData";
     self.pickerArray = @[@"Vc_jiaojiao",@"Vc_tiantian",@"Vc_baklong",@"Vc_ledi",@"Vc_weimian"];
     self.micAudioData = [NSMutableData data];
     [self setupSubView];
+    [self setupAuthorInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    
+}
+
+- (void)setupAuthorInfo {
     NSString *clientId = [[NSUserDefaults standardUserDefaults] objectForKey:clientIdKey];
     NSString *clientSecret = [[NSUserDefaults standardUserDefaults] objectForKey:clientSecretKey];
     if (!clientSecret || !clientId) {
@@ -68,7 +72,6 @@ static NSString *DBAudioMicroData = @"audioMicroData";
             [self dismissViewControllerAnimated:YES completion:nil];
 
         }];
-    
 }
 
 - (void)showLogInVC {
@@ -192,7 +195,16 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 }
 
 - (void)onError:(NSInteger)code message:(NSString *)message {
-    [self.view makeToast:message duration:2 position:CSToastPositionCenter];
+    
+    if (code == DBErrorStateParsing) {
+        [self setupAuthorInfo];
+        return;
+    }
+
+    NSString *desMessage = [NSString stringWithFormat:@"code:%@ message:%@",@(code),message];
+    
+    [self.view makeToast:desMessage duration:2 position:CSToastPositionCenter];
+    
     self.voiceImageView.hidden = YES;
     self.startButton.selected = NO;
     self.fileButton.selected = NO;
@@ -200,17 +212,13 @@ static NSString *DBAudioMicroData = @"audioMicroData";
     
     [self setButton:self.startButton enable:YES];
     [self setButton:self.fileButton enable:YES];
-    
-//    if (code == DBErrorStateFileReadFailed) {
-//        [[XCHudHelper sharedInstance] hideHud];
-//        return;
-//    }
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults removeObjectForKey:@"token"];
-//    [userDefaults removeObjectForKey:clientSecretKey];
-//    [userDefaults removeObjectForKey:clientIdKey];
-//    [self showLogInVC];
-//    self.voiceImageView.hidden = YES;
+}
+
+- (void)clearUserInfo {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"token"];
+    [userDefaults removeObjectForKey:clientSecretKey];
+    [userDefaults removeObjectForKey:clientIdKey];
 }
 
 - (void)microphoneAudioData:(NSData *)data isLast:(BOOL)isLast {
@@ -231,7 +239,9 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 
 - (void)readyToTransfer {
     NSLog(@"开始声音转换");
-    self.voiceImageView.hidden = NO;
+    if (self.startButton.isSelected) {
+        self.voiceImageView.hidden = NO;
+    }
 }
 
 
@@ -266,11 +276,10 @@ static NSString *DBAudioMicroData = @"audioMicroData";
 - (void)transferCallBack:(NSData *)data isLast:(BOOL)isLast {
     NSLog(@"dataLength:%@ isLast:%@,",@(data.length),@(isLast));
     
-//    if (isLast) {
-        self.fileButton.selected = NO;
+    self.fileButton.selected = NO;
     [self setButton:self.startButton enable:YES];
-        [[XCHudHelper sharedInstance] hideHud];
-//    }
+    [[XCHudHelper sharedInstance] hideHud];
+    
     
 }
 

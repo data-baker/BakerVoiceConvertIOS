@@ -22,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.clientIdTextField.text = @"4020bc7b-13f2-4080-b406-45ad06e3ccb7";
+    self.clientSecretTextField.text = @"NGVjNmNmNmEtMmFkYS00YWIxLWFmYjEtYjE1MTNjYWYyN2E4";
    
 }
 - (IBAction)loginAction:(id)sender {
